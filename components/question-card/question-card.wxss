@@ -1,0 +1,36 @@
+.question-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42rpx;
+  padding: 0 18rpx;
+  border-radius: 999rpx;
+  background: rgba(52, 120, 255, 0.1);
+  color: #2f62db;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.question-topic {
+  color: #6c7d94;
+  font-size: 24rpx;
+}
+
+.question-title {
+  margin-top: 28rpx;
+  color: #172033;
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1.35;
+}

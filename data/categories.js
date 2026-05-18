@@ -1,0 +1,70 @@
+const categories = [
+  {
+    id: 'ai_basic',
+    name: 'AI 基础知识',
+    description: '了解生成式 AI、大模型、提示词等基础概念。',
+    icon: '🧠',
+    difficulty: '入门',
+    questionCount: 5,
+  },
+  {
+    id: 'prompt',
+    name: '提示词技巧',
+    description: '学习如何写出更清晰、更有效的 AI 指令。',
+    icon: '✍️',
+    difficulty: '入门到进阶',
+    questionCount: 5,
+  },
+  {
+    id: 'office',
+    name: 'AI 办公效率',
+    description: '用 AI 写邮件、做纪要、拆任务和整理资料。',
+    icon: '📊',
+    difficulty: '实用',
+    questionCount: 5,
+  },
+  {
+    id: 'marketing',
+    name: 'AI 营销运营',
+    description: '用 AI 辅助内容、社媒、电商和私域运营。',
+    icon: '📣',
+    difficulty: '实用',
+    questionCount: 5,
+  },
+  {
+    id: 'image',
+    name: 'AI 图片生成',
+    description: '掌握图片提示词、风格、构图和细节表达。',
+    icon: '🎨',
+    difficulty: '入门',
+    questionCount: 5,
+  },
+  {
+    id: 'video',
+    name: 'AI 视频生成',
+    description: '理解镜头、动作、场景一致性和分镜写法。',
+    icon: '🎬',
+    difficulty: '入门',
+    questionCount: 5,
+  },
+  {
+    id: 'coding',
+    name: 'AI 编程辅助',
+    description: '学习如何让 AI 读代码、改 bug、生成页面。',
+    icon: '💻',
+    difficulty: '进阶',
+    questionCount: 5,
+  },
+  {
+    id: 'safety',
+    name: 'AI 安全与常识',
+    description: '了解隐私、版权、事实核查和安全使用边界。',
+    icon: '🛡️',
+    difficulty: '必学',
+    questionCount: 5,
+  },
+]
+
+module.exports = {
+  categories,
+}

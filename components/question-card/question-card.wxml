@@ -1,0 +1,7 @@
+<view class="question-card">
+  <view class="question-head">
+    <view class="pill">{{progressText}}</view>
+    <view class="question-topic">{{title}}</view>
+  </view>
+  <view class="question-title">{{question}}</view>
+</view>

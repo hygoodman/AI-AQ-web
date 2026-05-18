@@ -1,0 +1,31 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42rpx;
+  padding: 0 18rpx;
+  border-radius: 999rpx;
+  background: rgba(52, 120, 255, 0.1);
+  color: #2f62db;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.soft-panel {
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, rgba(226, 243, 255, 0.9), rgba(245, 239, 255, 0.9));
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
+}
+
+.tap-card {
+  transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.tap-card:active {
+  opacity: 0.78;
+  transform: scale(0.98);
+}

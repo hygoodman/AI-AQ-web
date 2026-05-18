@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="section-head">
+    <view>
+      <view class="page-title">选择学习方向</view>
+      <view class="muted-text">从一个你最想提升的 AI 主题开始。</view>
+    </view>
+  </view>
+  <view class="category-grid">
+    <category-card
+      wx:for="{{categories}}"
+      wx:key="id"
+      item="{{item}}"
+      bind:select="handleCategorySelect"
+    />
+  </view>
+</view>

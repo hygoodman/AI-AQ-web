@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="page-title">错题本</view>
+  <view wx:if="{{wrongItems.length}}">
+    <view class="wrong-summary card">
+      <view>
+        <view class="wrong-count">{{allWrongItems.length}} 道错题</view>
+        <view class="muted-text">重新看解析，把薄弱点补上。</view>
+      </view>
+      <view class="ghost-button tap-card" bindtap="practiceWrong">重新练习</view>
+    </view>
+    <scroll-view scroll-x class="filter-scroll">
+      <view class="filter-row">
+        <view
+          wx:for="{{filters}}"
+          wx:key="id"
+          class="{{item.className}}"
+          data-id="{{item.id}}"
+          bindtap="switchFilter"
+        >
+          {{item.name}} {{item.count}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="wrong-list">
+      <view wx:for="{{wrongItems}}" wx:key="questionId" class="wrong-card card">
+        <view class="wrong-category">{{item.question.categoryName}}</view>
+        <view class="wrong-question">{{item.question.question}}</view>
+        <view class="wrong-answer">你的答案：{{item.userAnswer}}　正确答案：{{item.correctAnswer}}</view>
+        <view class="wrong-section-title">解析</view>
+        <view class="wrong-text">{{item.question.explanation}}</view>
+        <view class="wrong-section-title">实际应用</view>
+        <view class="wrong-text">{{item.question.workExample}}</view>
+        <view class="primary-button tap-card mastered-button" data-id="{{item.questionId}}" bindtap="markMastered">
+          标记已掌握
+        </view>
+      </view>
+    </view>
+  </view>
+  <empty-state
+    wx:else
+    title="还没有错题"
+    desc="开始答题后，答错的题目会自动出现在这里。"
+  />
+</view>

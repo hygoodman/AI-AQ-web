@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "知识分类",
+  "usingComponents": {
+    "category-card": "/components/category-card/category-card"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/categories/categories",
+    "pages/quiz/quiz",
+    "pages/result/result",
+    "pages/wrongbook/wrongbook",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "AI 知识问答",
+    "navigationBarBackgroundColor": "#f7fbff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7fbff",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

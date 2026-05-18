@@ -1,0 +1,9 @@
+<view class="category-card tap-card" bindtap="handleTap">
+  <view class="category-top">
+    <view class="category-icon">{{item.icon}}</view>
+    <view class="pill">{{item.difficulty}}</view>
+  </view>
+  <view class="category-name">{{item.name}}</view>
+  <view class="category-desc">{{item.description}}</view>
+  <view class="category-meta">{{item.questionCount}} 道题</view>
+</view>

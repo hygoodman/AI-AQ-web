@@ -1,0 +1,4 @@
+<view class="option-item option-{{item.status}}" bindtap="handleTap">
+  <view class="option-key">{{item.key}}</view>
+  <view class="option-text">{{item.text}}</view>
+</view>

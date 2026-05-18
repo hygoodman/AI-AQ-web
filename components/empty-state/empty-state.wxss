@@ -1,0 +1,34 @@
+.empty-state {
+  box-sizing: border-box;
+  padding: 72rpx 40rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.82);
+  text-align: center;
+}
+
+.empty-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 30rpx;
+  background: linear-gradient(135deg, #e7f6ff, #f1ebff);
+  color: #3971ff;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.empty-title {
+  margin-top: 26rpx;
+  color: #172033;
+  font-size: 31rpx;
+  font-weight: 700;
+}
+
+.empty-desc {
+  margin-top: 12rpx;
+  color: #6c7d94;
+  font-size: 25rpx;
+  line-height: 1.6;
+}

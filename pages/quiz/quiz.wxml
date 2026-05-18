@@ -1,0 +1,44 @@
+<view class="page">
+  <view wx:if="{{currentQuestion}}" class="quiz-shell card">
+    <question-card
+      progress-text="{{progressText}}"
+      title="{{title}}"
+      question="{{currentQuestion.question}}"
+    />
+    <view class="option-list">
+      <option-button
+        wx:for="{{optionViews}}"
+        wx:key="key"
+        item="{{item}}"
+        disabled="{{isAnswered}}"
+        bind:select="handleOptionSelect"
+      />
+    </view>
+    <view wx:if="{{isAnswered}}" class="analysis-card">
+      <view class="analysis-head">
+        <view class="analysis-result {{answerStatusClass}}">
+          {{answerStatusText}}
+        </view>
+        <view class="favorite-button" bindtap="toggleFavorite">
+          {{favoriteText}}
+        </view>
+      </view>
+      <view class="answer-line">正确答案：{{currentQuestion.answer}}</view>
+      <view class="analysis-title">解析</view>
+      <view class="analysis-text">{{currentQuestion.explanation}}</view>
+      <view class="analysis-title">实际应用</view>
+      <view class="analysis-text">{{currentQuestion.workExample}}</view>
+    </view>
+    <view class="action-row">
+      <view class="ghost-button tap-card" bindtap="exitQuiz">退出答题</view>
+      <view class="primary-button tap-card" bindtap="nextQuestion">
+        {{nextButtonText}}
+      </view>
+    </view>
+  </view>
+  <view wx:else class="quiz-shell card">
+    <view class="quiz-title">暂无题目</view>
+    <view class="quiz-desc">这个分类还没有题目，请先返回首页选择其他分类。</view>
+    <view class="primary-button tap-card" bindtap="exitQuiz">返回</view>
+  </view>
+</view>

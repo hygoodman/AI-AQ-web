@@ -1,0 +1,102 @@
+.page-title {
+  margin-bottom: 28rpx;
+  color: #172033;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.wrong-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 28rpx;
+}
+
+.wrong-summary .ghost-button {
+  flex: 0 0 180rpx;
+}
+
+.wrong-count {
+  color: #172033;
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.filter-scroll {
+  width: 100%;
+  margin-top: 22rpx;
+  white-space: nowrap;
+}
+
+.filter-row {
+  display: flex;
+  gap: 14rpx;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 58rpx;
+  padding: 0 22rpx;
+  border-radius: 999rpx;
+  background: #eef5ff;
+  color: #58708f;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.filter-chip.active {
+  background: linear-gradient(135deg, #3478ff, #7c5cff);
+  color: #ffffff;
+}
+
+.wrong-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+  margin-top: 24rpx;
+}
+
+.wrong-card {
+  padding: 30rpx;
+}
+
+.wrong-category {
+  color: #2f62db;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.wrong-question {
+  margin-top: 14rpx;
+  color: #172033;
+  font-size: 31rpx;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.wrong-answer {
+  margin-top: 18rpx;
+  color: #d94141;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.wrong-section-title {
+  margin-top: 22rpx;
+  color: #172033;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.wrong-text {
+  margin-top: 8rpx;
+  color: #52677f;
+  font-size: 25rpx;
+  line-height: 1.65;
+}
+
+.mastered-button {
+  margin-top: 26rpx;
+}

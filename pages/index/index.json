@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "AI 知识问答",
+  "usingComponents": {
+    "category-card": "/components/category-card/category-card",
+    "stat-card": "/components/stat-card/stat-card"
+  }
+}

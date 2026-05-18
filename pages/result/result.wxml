@@ -1,0 +1,26 @@
+<view class="page result-page">
+  <view class="result-card card">
+    <view class="result-label">{{resultTitle}}</view>
+    <view class="result-score">{{accuracy}}%</view>
+    <view class="result-stats">
+      <view class="result-stat">
+        <view class="result-stat-value">{{total}}</view>
+        <view class="result-stat-label">答题数</view>
+      </view>
+      <view class="result-stat">
+        <view class="result-stat-value">{{correct}}</view>
+        <view class="result-stat-label">答对</view>
+      </view>
+      <view class="result-stat">
+        <view class="result-stat-value">{{wrong}}</view>
+        <view class="result-stat-label">答错</view>
+      </view>
+    </view>
+    <view class="comment-box">{{comment}}</view>
+    <view class="result-actions">
+      <view class="primary-button tap-card" bindtap="continueQuiz">{{continueText}}</view>
+      <view class="ghost-button tap-card" bindtap="goWrongbook">查看错题</view>
+      <view class="ghost-button tap-card" bindtap="goHome">返回首页</view>
+    </view>
+  </view>
+</view>

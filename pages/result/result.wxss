@@ -1,0 +1,58 @@
+.result-card {
+  padding: 42rpx 34rpx;
+  text-align: center;
+}
+
+.result-label {
+  color: #23a6a8;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.result-score {
+  margin: 18rpx 0;
+  color: #172033;
+  font-size: 62rpx;
+  font-weight: 900;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16rpx;
+  margin: 30rpx 0;
+}
+
+.result-stat {
+  padding: 22rpx 12rpx;
+  border-radius: 22rpx;
+  background: #f4f8ff;
+}
+
+.result-stat-value {
+  color: #172033;
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.result-stat-label {
+  margin-top: 8rpx;
+  color: #6c7d94;
+  font-size: 23rpx;
+}
+
+.comment-box {
+  padding: 24rpx;
+  border-radius: 22rpx;
+  background: linear-gradient(135deg, #eff8ff, #f7f1ff);
+  color: #52677f;
+  font-size: 27rpx;
+  line-height: 1.6;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  margin-top: 36rpx;
+}

@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="profile-head soft-panel">
+    <view class="profile-title">我的学习</view>
+    <view class="muted-text">查看学习记录和收藏的 AI 知识题目。</view>
+  </view>
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">学习记录</view>
+    </view>
+    <view wx:if="{{records.length}}" class="record-list">
+      <view wx:for="{{records}}" wx:key="id" class="record-item card">
+        <view>
+          <view class="record-date">{{item.date}}</view>
+          <view class="muted-text">{{item.displayName}} · 完成 {{item.total}} 题，答对 {{item.correct}} 题</view>
+        </view>
+        <view class="record-accuracy">{{item.accuracy}}%</view>
+      </view>
+    </view>
+    <empty-state
+      wx:else
+      title="暂无学习记录"
+      desc="完成每日答题或分类练习后，这里会展示你的学习历史。"
+    />
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">我的收藏</view>
+    </view>
+    <view wx:if="{{favorites.length}}" class="favorite-list">
+      <view wx:for="{{favorites}}" wx:key="questionId" class="favorite-card card">
+        <view class="favorite-category">{{item.question.categoryName}}</view>
+        <view class="favorite-question">{{item.question.question}}</view>
+        <view class="favorite-answer">答案：{{item.question.answer}}</view>
+        <view class="favorite-text">{{item.question.explanation}}</view>
+        <view class="ghost-button tap-card favorite-remove" data-id="{{item.questionId}}" bindtap="removeFavoriteItem">
+          取消收藏
+        </view>
+      </view>
+    </view>
+    <empty-state
+      wx:else
+      title="还没有收藏"
+      desc="答题时看到有价值的解析，可以点击收藏保存。"
+    />
+  </view>
+</view>

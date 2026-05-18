@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "开始答题",
+  "usingComponents": {
+    "question-card": "/components/question-card/question-card",
+    "option-button": "/components/option-button/option-button"
+  }
+}

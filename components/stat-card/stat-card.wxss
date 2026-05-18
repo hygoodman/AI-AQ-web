@@ -1,0 +1,21 @@
+.stat-card {
+  min-height: 132rpx;
+  box-sizing: border-box;
+  padding: 22rpx 16rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.stat-value {
+  color: #172033;
+  font-size: 36rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.stat-label {
+  margin-top: 10rpx;
+  color: #6c7d94;
+  font-size: 23rpx;
+}

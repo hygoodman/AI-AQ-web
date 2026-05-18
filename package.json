@@ -1,0 +1,10 @@
+{
+  "name": "ai-knowledge-quiz-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI 知识问答微信小程序",
+  "scripts": {
+    "check:questions": "node scripts/check-questions.js",
+    "check": "npm run check:questions"
+  }
+}
