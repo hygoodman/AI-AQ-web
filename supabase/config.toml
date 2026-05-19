@@ -1,0 +1,4 @@
+project_id = "ai-quiz-web-vercel"
+
+[functions.daily-ai-news]
+verify_jwt = false

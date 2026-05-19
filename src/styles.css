@@ -364,7 +364,9 @@ button {
 }
 
 .question-list,
-.record-list {
+.record-list,
+.news-group-list,
+.news-list {
   display: grid;
   gap: 12px;
   margin-top: 14px;
@@ -381,6 +383,97 @@ button {
 .empty-state {
   color: #65728a;
   text-align: center;
+}
+
+.news-archive {
+  margin-top: 34px;
+}
+
+.news-header {
+  margin-top: 0;
+}
+
+.news-header .muted {
+  margin: 6px 0 0;
+}
+
+.news-group {
+  overflow: hidden;
+  border: 1px solid #dce4ef;
+  border-radius: 8px;
+  background: #f9fbfe;
+}
+
+.news-group.latest {
+  border-color: #9cc7d9;
+  background: #f5fbfd;
+}
+
+.news-date-row {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background: transparent;
+  color: #18334f;
+  font-weight: 800;
+  text-align: left;
+}
+
+.news-date-row:hover {
+  background: #eef6f9;
+}
+
+.news-date-meta {
+  color: #65728a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.news-list {
+  margin-top: 0;
+  padding: 0 16px 16px;
+}
+
+.news-item {
+  padding: 14px;
+  border: 1px solid #dce4ef;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.news-item a {
+  color: #146c94;
+  font-weight: 800;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+.news-item p {
+  margin: 8px 0 0;
+  color: #65728a;
+  line-height: 1.65;
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 10px;
+  color: #6a7890;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.news-empty {
+  margin-top: 14px;
 }
 
 .toast {
@@ -444,9 +537,15 @@ button {
 
   .section-header,
   .action-row,
-  .list-item {
+  .list-item,
+  .news-date-row {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .news-date-row {
+    justify-content: center;
+    padding: 12px 14px;
   }
 
   .option-button {

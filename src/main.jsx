@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
+import AiNewsArchive from './components/AiNewsArchive.jsx'
 import { categories, questions } from './generated/quiz-data.js'
 import './styles.css'
 
@@ -311,6 +312,8 @@ function App() {
             <CategoryCard key={category.id} category={category} onStart={() => startQuiz('category', category.id)} />
           ))}
         </div>
+
+        <AiNewsArchive />
       </>
     )
   }
