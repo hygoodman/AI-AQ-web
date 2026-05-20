@@ -166,6 +166,15 @@ curl -X POST "http://127.0.0.1:54321/functions/v1/daily-ai-news" \
   -d '{"date":"2026-05-19"}'
 ```
 
+只测试真实 RSS 抓取、去重、评分和 Top 5 结果，不写入数据库：
+
+```bash
+curl -X POST "http://127.0.0.1:54321/functions/v1/daily-ai-news" \
+  -H "content-type: application/json" \
+  -H "x-news-job-secret: your-secret" \
+  -d '{"date":"2026-05-19","dryRun":true}'
+```
+
 部署函数：
 
 ```bash

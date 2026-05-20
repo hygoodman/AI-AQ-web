@@ -89,6 +89,9 @@ function stripHtml(value: string) {
 
 function buildSummary(value: string, title: string) {
   const cleaned = stripHtml(value || title)
+  if (cleaned.length < 80 && title && !cleaned.includes(title)) {
+    return `${cleaned} ${title}`.trim().slice(0, 150)
+  }
   if (cleaned.length <= 150) return cleaned
   const excerpt = cleaned.slice(0, 147).trim()
   return `${excerpt}...`
@@ -244,6 +247,7 @@ Deno.serve(async (request) => {
     const startedAt = new Date()
     const body = await request.json().catch(() => ({}))
     const batchDate = typeof body.date === 'string' && body.date ? body.date : getBatchDate(startedAt)
+    const dryRun = body.dryRun === true
     const sourceResults: SourceResult[] = []
     const collectedItems: RawNewsItem[] = []
 
@@ -254,24 +258,52 @@ Deno.serve(async (request) => {
     }
 
     const topItems = selectTopItems(collectedItems)
-    const supabase = createClient(requireEnv('SUPABASE_URL'), getServiceRoleKey(), {
-      auth: { persistSession: false },
-    })
-
     let upserted = 0
-    if (topItems.length) {
-      const { error: upsertError } = await supabase.from('news').upsert(topItems, {
-        onConflict: 'source_url',
+    let archived = 0
+
+    if (!dryRun) {
+      const supabase = createClient(requireEnv('SUPABASE_URL'), getServiceRoleKey(), {
+        auth: { persistSession: false },
       })
 
-      if (upsertError) throw upsertError
-      upserted = topItems.length
+      if (topItems.length) {
+        const { error: upsertError } = await supabase.from('news').upsert(topItems, {
+          onConflict: 'source_url',
+        })
+
+        if (upsertError) throw upsertError
+        upserted = topItems.length
+
+        const topUrls = new Set(topItems.map((item) => item.source_url))
+        const { data: sameDateRows, error: sameDateError } = await supabase
+          .from('news')
+          .select('id,source_url')
+          .eq('batch_date', batchDate)
+          .eq('status', 'published')
+
+        if (sameDateError) throw sameDateError
+
+        const staleIds = (sameDateRows || [])
+          .filter((row) => !topUrls.has(row.source_url))
+          .map((row) => row.id)
+
+        if (staleIds.length) {
+          const { error: archiveError } = await supabase
+            .from('news')
+            .update({ status: 'archived', rank: null })
+            .in('id', staleIds)
+
+          if (archiveError) throw archiveError
+          archived = staleIds.length
+        }
+      }
     }
 
     const finishedAt = new Date()
     const payload = {
       ok: true,
       batch_date: batchDate,
+      dry_run: dryRun,
       started_at: startedAt.toISOString(),
       finished_at: finishedAt.toISOString(),
       source_count: NEWS_SOURCES.length,
@@ -279,6 +311,7 @@ Deno.serve(async (request) => {
       unique_candidate_count: new Set(collectedItems.map((item) => item.source_url)).size,
       top_count: topItems.length,
       upserted,
+      archived,
       top_items: topItems.map((item) => ({
         rank: item.rank,
         title: item.title,
