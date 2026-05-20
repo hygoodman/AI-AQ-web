@@ -192,7 +192,7 @@ supabase secrets set SUPABASE_URL=https://your-project-ref.supabase.co
 
 ### Supabase Cron
 
-在 Supabase SQL Editor 启用 `pg_cron` 和 `pg_net` 后，可每天定时调用 Edge Function。把 URL 和 secret 替换成自己的值：
+在 Supabase SQL Editor 启用 `pg_cron` 和 `pg_net` 后，可每天定时调用 Edge Function。每天北京时间 08:00 对应 UTC 00:00，所以 cron 表达式使用 `0 0 * * *`。把 URL 和 secret 替换成自己的值：
 
 ```sql
 create extension if not exists pg_cron with schema extensions;
