@@ -67,9 +67,63 @@ function getNewsSummary(value, title) {
   return summary
 }
 
-function getNewsMark(item) {
-  if (item.rank) return `#${item.rank}`
-  return (item.source_name || item.title || 'AI').trim().slice(0, 2).toUpperCase()
+function getCompanyKind(item) {
+  const text = `${item.title || ''} ${item.summary || ''} ${item.source_name || ''}`.toLowerCase()
+  if (text.includes('anthropic') || text.includes('claude')) return 'anthropic'
+  if (text.includes('openai') || text.includes('chatgpt') || /\bgpt\b/.test(text)) return 'openai'
+  if (text.includes('google') || text.includes('gemini') || text.includes('deepmind')) return 'google'
+  if (text.includes('meta') || text.includes('llama')) return 'meta'
+  if (text.includes('microsoft') || text.includes('copilot')) return 'microsoft'
+  if (text.includes('nvidia')) return 'nvidia'
+  return 'ai'
+}
+
+function NewsCompanyIcon({ item }) {
+  const kind = getCompanyKind(item)
+
+  return (
+    <span className={`news-company-icon ${kind}`} aria-hidden="true">
+      {kind === 'anthropic' && (
+        <svg viewBox="0 0 64 64">
+          <path d="M14 50 30 14h8l16 36h-9l-3.6-8.8H26.1L22.5 50Z" />
+          <path className="cut" d="M29.3 34.3h8.6L33.6 23Z" />
+        </svg>
+      )}
+      {kind === 'openai' && (
+        <svg viewBox="0 0 64 64">
+          <path d="M31.9 10c5.8 0 10.7 3.7 12.5 8.8 5.3 1 9.2 5.7 9.2 11.3 0 3.2-1.3 6.1-3.4 8.2.4 1.3.6 2.6.6 4 0 7-5.7 12.7-12.7 12.7-1.7 0-3.3-.3-4.8-1-2.1 1.8-4.8 2.8-7.8 2.8-5.8 0-10.7-3.7-12.5-8.8-5.3-1-9.2-5.7-9.2-11.3 0-3.2 1.3-6.1 3.4-8.2-.4-1.3-.6-2.6-.6-4 0-7 5.7-12.7 12.7-12.7 1.7 0 3.3.3 4.8 1 2.1-1.8 4.8-2.8 7.8-2.8Z" />
+          <path className="cut" d="m22 22 10-5.8 10 5.8v11.5L32 39.3l-10-5.8Z" />
+        </svg>
+      )}
+      {kind === 'google' && <span className="news-company-letter">G</span>}
+      {kind === 'meta' && (
+        <svg viewBox="0 0 64 64">
+          <path d="M11 41c3.6-13.2 8.5-20 14.7-20 4.2 0 7.5 3.5 10.3 8.1C38.8 24.5 42.1 21 46.3 21 52.5 21 57.4 27.8 61 41h-9.2c-2.3-7.8-4.2-11.6-6.3-11.6-2.4 0-4.7 4.4-7.4 9.3l-2.1 3.8h-8l-2.1-3.8c-2.7-4.9-5-9.3-7.4-9.3-2.1 0-4 3.8-6.3 11.6Z" />
+        </svg>
+      )}
+      {kind === 'microsoft' && (
+        <svg viewBox="0 0 64 64">
+          <path d="M11 11h19v19H11Zm23 0h19v19H34ZM11 34h19v19H11Zm23 0h19v19H34Z" />
+        </svg>
+      )}
+      {kind === 'nvidia' && (
+        <svg viewBox="0 0 64 64">
+          <path d="M8 32c8.1-9 16.5-13.5 25.1-13.5 9.7 0 17.3 4.5 22.9 13.5-5.6 9-13.2 13.5-22.9 13.5C24.5 45.5 16.1 41 8 32Zm16.2 0a9.1 9.1 0 1 0 18.2 0 9.1 9.1 0 0 0-18.2 0Zm9.1-4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" />
+        </svg>
+      )}
+      {kind === 'ai' && <span className="news-company-letter">AI</span>}
+    </span>
+  )
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg className="news-source-arrow" aria-hidden="true" viewBox="0 0 24 24">
+      <path d="M14 5h5v5" />
+      <path d="m19 5-9 9" />
+      <path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" />
+    </svg>
+  )
 }
 
 function getSourceLabel(value) {
@@ -163,9 +217,7 @@ export default function AiNewsArchive() {
 
                   return (
                     <article className="news-story" key={item.id}>
-                      <span className="news-story-mark" aria-hidden="true">
-                        {getNewsMark(item)}
-                      </span>
+                      <NewsCompanyIcon item={item} />
                       <div className="news-story-copy">
                         <a href={item.source_url} target="_blank" rel="noopener noreferrer">
                           {item.title}
@@ -181,7 +233,7 @@ export default function AiNewsArchive() {
                         </div>
                         <a className="news-source-button" href={item.source_url} target="_blank" rel="noopener noreferrer">
                           查看原文
-                          <span className="news-source-arrow" aria-hidden="true" />
+                          <ExternalLinkIcon />
                         </a>
                       </div>
                     </article>
