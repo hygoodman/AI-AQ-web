@@ -675,6 +675,107 @@ button {
   margin-top: 24px;
 }
 
+.news-older-history {
+  padding: 0;
+}
+
+.news-older-history > summary {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 46px;
+  align-items: center;
+  gap: 14px;
+  min-height: 118px;
+  padding: 22px;
+  color: #101b33;
+  cursor: pointer;
+  list-style: none;
+}
+
+.news-older-history > summary::-webkit-details-marker {
+  display: none;
+}
+
+.news-older-history > summary strong,
+.news-older-history > summary small {
+  display: block;
+}
+
+.news-older-history > summary strong {
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.news-older-history > summary small {
+  margin-top: 7px;
+  color: #526990;
+  font-weight: 700;
+}
+
+.news-history-mark,
+.news-history-arrow {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #d2e2ff;
+  border-radius: 8px;
+  background: #eaf3ff;
+}
+
+.news-history-mark {
+  width: 58px;
+  height: 58px;
+}
+
+.news-history-mark::before {
+  width: 27px;
+  height: 27px;
+  border: 3px solid #1f6ff0;
+  border-radius: 50%;
+  background:
+    linear-gradient(#1f6ff0, #1f6ff0) 12px 5px / 3px 10px no-repeat,
+    linear-gradient(#1f6ff0, #1f6ff0) 12px 12px / 9px 3px no-repeat;
+  content: "";
+}
+
+.news-history-mark::after {
+  position: absolute;
+  left: 11px;
+  top: 16px;
+  width: 9px;
+  height: 9px;
+  border-top: 3px solid #1f6ff0;
+  border-left: 3px solid #1f6ff0;
+  content: "";
+  transform: rotate(-35deg);
+}
+
+.news-history-arrow {
+  width: 46px;
+  height: 46px;
+  justify-self: end;
+  background: #fff;
+}
+
+.news-history-arrow::before {
+  width: 11px;
+  height: 11px;
+  border-top: 2px solid #1f6ff0;
+  border-right: 2px solid #1f6ff0;
+  content: "";
+  transform: translateX(-3px) rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.news-older-history[open] .news-history-arrow::before {
+  transform: translateY(-3px) rotate(135deg);
+}
+
+.news-history-weeks {
+  display: grid;
+  gap: 12px;
+  padding: 0 18px 18px;
+}
+
 .news-history-week {
   border: 1px solid #d5e1f4;
   border-radius: 8px;
@@ -1033,6 +1134,23 @@ button {
   .news-history-week summary {
     min-height: 62px;
     padding: 14px;
+  }
+
+  .news-older-history > summary {
+    grid-template-columns: 48px minmax(0, 1fr) 42px;
+    min-height: 98px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .news-history-mark {
+    width: 48px;
+    height: 48px;
+  }
+
+  .news-history-arrow {
+    width: 42px;
+    height: 42px;
   }
 
   .option-button {

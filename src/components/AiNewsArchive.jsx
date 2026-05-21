@@ -286,38 +286,14 @@ export default function AiNewsArchive() {
               <p>查看过去日期的 AI 资讯摘录。</p>
               <div className="news-history-list">
                 {historyGroups.length ? (
-                  <>
-                    {recentHistoryGroups.map((group) => (
-                      <ArchiveDateButton
-                        group={group}
-                        isSelected={selectedGroup?.batchDate === group.batchDate}
-                        key={group.batchDate}
-                        onToggle={toggleDate}
-                      />
-                    ))}
-                    {weeklyHistoryGroups.map((week) => (
-                      <details
-                        className="news-history-week"
-                        defaultOpen={week.groups.some((group) => selectedGroup?.batchDate === group.batchDate)}
-                        key={week.key}
-                      >
-                        <summary>
-                          <span>{week.label}</span>
-                          <small>{week.groups.length} 组归档</small>
-                        </summary>
-                        <div className="news-history-week-days">
-                          {week.groups.map((group) => (
-                            <ArchiveDateButton
-                              group={group}
-                              isSelected={selectedGroup?.batchDate === group.batchDate}
-                              key={group.batchDate}
-                              onToggle={toggleDate}
-                            />
-                          ))}
-                        </div>
-                      </details>
-                    ))}
-                  </>
+                  recentHistoryGroups.map((group) => (
+                    <ArchiveDateButton
+                      group={group}
+                      isSelected={selectedGroup?.batchDate === group.batchDate}
+                      key={group.batchDate}
+                      onToggle={toggleDate}
+                    />
+                  ))
                 ) : (
                   <div className="empty-state news-empty">暂无更早的 AI 资讯。</div>
                 )}
@@ -336,6 +312,48 @@ export default function AiNewsArchive() {
                 <strong>{totalArticles}</strong>
               </div>
             </section>
+
+            {weeklyHistoryGroups.length > 0 && (
+              <details
+                className="news-rail-block news-older-history"
+                defaultOpen={weeklyHistoryGroups.some((week) =>
+                  week.groups.some((group) => selectedGroup?.batchDate === group.batchDate)
+                )}
+              >
+                <summary>
+                  <span className="news-history-mark" aria-hidden="true" />
+                  <span>
+                    <strong>查看历史资讯</strong>
+                    <small>浏览更早归档</small>
+                  </span>
+                  <span className="news-history-arrow" aria-hidden="true" />
+                </summary>
+                <div className="news-history-weeks">
+                  {weeklyHistoryGroups.map((week) => (
+                    <details
+                      className="news-history-week"
+                      defaultOpen={week.groups.some((group) => selectedGroup?.batchDate === group.batchDate)}
+                      key={week.key}
+                    >
+                      <summary>
+                        <span>{week.label}</span>
+                        <small>{week.groups.length} 组归档</small>
+                      </summary>
+                      <div className="news-history-week-days">
+                        {week.groups.map((group) => (
+                          <ArchiveDateButton
+                            group={group}
+                            isSelected={selectedGroup?.batchDate === group.batchDate}
+                            key={group.batchDate}
+                            onToggle={toggleDate}
+                          />
+                        ))}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </details>
+            )}
           </aside>
         </div>
       )}
