@@ -62,15 +62,27 @@ function getBatchDate(date = new Date(), timeZone = Deno.env.get('NEWS_TIME_ZONE
   return `${year}-${month}-${day}`
 }
 
-function getNodeText(parent: Element, names: string[]) {
-  const child = Array.from(parent.children).find((node) => names.includes(node.localName.toLowerCase()))
-  return child?.textContent?.trim() || ''
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
-function getItemLink(item: Element) {
-  const atomLink = Array.from(item.children).find((node) => node.localName.toLowerCase() === 'link' && node.getAttribute('href'))
-  if (atomLink?.getAttribute('href')) return atomLink.getAttribute('href') || ''
-  return getNodeText(item, ['link', 'guid', 'id'])
+function getFeedNodeText(item: string, names: string[]) {
+  for (const name of names) {
+    const escapedName = escapeRegExp(name)
+    const match = item.match(new RegExp(`<${escapedName}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${escapedName}>`, 'i'))
+    if (match?.[1]) return match[1].trim()
+  }
+  return ''
+}
+
+function getFeedItems(xml: string) {
+  return [...xml.matchAll(/<(item|entry)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/gi)].map((match) => match[2])
+}
+
+function getItemLink(item: string) {
+  const atomLink = item.match(/<link\b[^>]*\bhref=(?:"([^"]+)"|'([^']+)')[^>]*\/?>/i)
+  if (atomLink?.[1] || atomLink?.[2]) return atomLink[1] || atomLink[2]
+  return getFeedNodeText(item, ['link', 'guid', 'id'])
 }
 
 function stripHtml(value: string) {
@@ -166,19 +178,17 @@ async function fetchSource(source: NewsSource, batchDate: string, now: Date): Pr
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
 
     const xml = await response.text()
-    const doc = new DOMParser().parseFromString(xml, 'application/xml')
-    if (doc.querySelector('parsererror')) throw new Error('Invalid RSS/XML feed')
-
-    const nodes = Array.from(doc.querySelectorAll('item, entry'))
+    const nodes = getFeedItems(xml)
+    if (!nodes.length) throw new Error('No RSS/Atom items found')
     result.fetched = nodes.length
 
     const items = nodes
       .map((node) => {
-        const title = stripHtml(getNodeText(node, ['title']))
+        const title = stripHtml(getFeedNodeText(node, ['title']))
         const sourceUrl = normalizeUrl(getItemLink(node))
-        const rawPublishedAt = getNodeText(node, ['pubdate', 'published', 'updated', 'date']) || now.toISOString()
+        const rawPublishedAt = getFeedNodeText(node, ['pubdate', 'published', 'updated', 'date']) || now.toISOString()
         const publishedAt = new Date(rawPublishedAt)
-        const rawSummary = getNodeText(node, ['description', 'summary', 'content', 'encoded'])
+        const rawSummary = getFeedNodeText(node, ['description', 'summary', 'content', 'encoded'])
         const summary = buildSummary(rawSummary, title)
 
         if (!title || !sourceUrl || Number.isNaN(publishedAt.getTime())) return null
