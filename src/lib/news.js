@@ -38,7 +38,7 @@ export async function fetchPublishedNewsArchive() {
   }
 
   const groupedByDate = (data || []).reduce((groups, item) => {
-    const batchDate = item.batch_date || 'Unknown date'
+    const batchDate = item.batch_date || '未知日期'
     if (!groups.has(batchDate)) groups.set(batchDate, [])
     groups.get(batchDate).push(item)
     return groups
