@@ -88,6 +88,8 @@ function getItemLink(item: string) {
 function stripHtml(value: string) {
   return value
     .replace(/<!\[CDATA\[|\]\]>/g, '')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
