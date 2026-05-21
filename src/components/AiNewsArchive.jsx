@@ -4,6 +4,8 @@ import { fetchPublishedNewsArchive } from '../lib/news.js'
 const SOURCE_LABELS = {
   'OpenAI News': 'OpenAI 资讯',
   'Google AI Blog': 'Google AI 博客',
+  'Official AI Model Releases Search': '官方模型发布搜索',
+  'Official AI Agent Releases Search': '官方 Agent 发布搜索',
   'Anthropic News Search': 'Anthropic 资讯搜索',
   'Microsoft AI Blog': '微软 AI 博客',
   'Nvidia AI Blog': 'NVIDIA AI 博客',
@@ -12,6 +14,15 @@ const SOURCE_LABELS = {
   'TechCrunch AI': 'TechCrunch AI',
   'The Verge AI': 'The Verge AI',
   'VentureBeat AI': 'VentureBeat AI',
+  'AI Coding Tools Search': 'AI 编程工具搜索',
+  'AI Product Updates Search': 'AI 产品更新搜索',
+  'AI Agents Search': 'AI Agent 搜索',
+  'Frontier AI Models Search': '前沿模型资讯搜索',
+  'AI Agent Products Search': 'AI Agent 产品搜索',
+  'AI Developer Tools Search': 'AI 开发工具搜索',
+  'China AI Models Search': '国内 AI 模型资讯搜索',
+  'China AI Agents Search': '国内 AI Agent 搜索',
+  'China AI Media Search': '国内 AI 媒体搜索',
 }
 
 function formatNewsDate(value) {

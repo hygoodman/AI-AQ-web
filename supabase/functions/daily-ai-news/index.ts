@@ -4,7 +4,9 @@ import {
   AI_NEWS_KEYWORDS,
   AI_NEWS_LOW_INTEREST_SIGNALS,
   AI_NEWS_PREFERRED_STORIES,
-  EXPANDED_NEWS_SOURCES,
+  BROAD_EXPANDED_NEWS_SOURCES,
+  DOMESTIC_NEWS_SOURCES,
+  FOCUSED_EXPANDED_NEWS_SOURCES,
   NEWS_SOURCES,
   type NewsSource,
 } from '../_shared/news-sources.ts'
@@ -231,14 +233,28 @@ function scoreItem(
       getFreshnessScore(publishedAt, now) +
       Math.min(30, (sourceMatches * 5) + (globalMatches * 3)) +
       Math.min(54, topicScore) +
-      Math.min(42, preferenceScore) +
+      Math.min(84, preferenceScore) +
       (source.highAuthority ? 12 : 0)
     ).toFixed(2)
   )
 }
 
-function isFreshEnough(publishedAt: Date, now: Date, batchDate: string, allowRecentWindow: boolean) {
+function getBatchDayDistance(publishedAt: Date, batchDate: string) {
+  const publishedDay = Date.parse(`${getBatchDate(publishedAt)}T00:00:00Z`)
+  const targetDay = Date.parse(`${batchDate}T00:00:00Z`)
+  if (Number.isNaN(publishedDay) || Number.isNaN(targetDay)) return Number.POSITIVE_INFINITY
+  return Math.abs(publishedDay - targetDay) / 864e5
+}
+
+function isFreshEnough(
+  publishedAt: Date,
+  now: Date,
+  batchDate: string,
+  allowRecentWindow: boolean,
+  adjacentDays: number
+) {
   if (getBatchDate(publishedAt) === batchDate) return true
+  if (adjacentDays > 0 && getBatchDayDistance(publishedAt, batchDate) <= adjacentDays) return true
   if (!allowRecentWindow) return false
   const ageHours = (now.getTime() - publishedAt.getTime()) / 36e5
   return ageHours >= 0 && ageHours <= 36
@@ -248,7 +264,8 @@ async function fetchSource(
   source: NewsSource,
   batchDate: string,
   now: Date,
-  allowRecentWindow: boolean
+  allowRecentWindow: boolean,
+  adjacentDays: number
 ): Promise<{ items: RawNewsItem[]; result: SourceResult }> {
   const result: SourceResult = { source: source.name, fetched: 0, accepted: 0, errors: [] }
 
@@ -279,7 +296,7 @@ async function fetchSource(
         const preference = assessPreference(title, summary)
 
         if (!title || !sourceUrl || Number.isNaN(publishedAt.getTime())) return null
-        if (!isFreshEnough(publishedAt, now, batchDate, allowRecentWindow)) return null
+        if (!isFreshEnough(publishedAt, now, batchDate, allowRecentWindow, adjacentDays)) return null
         if (!countKeywordMatches(`${title} ${summary}`, [...AI_NEWS_KEYWORDS, ...source.keywords])) return null
         if (!topic.names.length || topic.score < 14) return null
 
@@ -305,6 +322,22 @@ async function fetchSource(
   } catch (error) {
     result.errors.push(error instanceof Error ? error.message : String(error))
     return { items: [], result }
+  }
+}
+
+async function appendSources(
+  sources: NewsSource[],
+  batchDate: string,
+  now: Date,
+  allowRecentWindow: boolean,
+  adjacentDays: number,
+  sourceResults: SourceResult[],
+  collectedItems: RawNewsItem[]
+) {
+  for (const source of sources) {
+    const { items, result } = await fetchSource(source, batchDate, now, allowRecentWindow, adjacentDays)
+    sourceResults.push(result)
+    collectedItems.push(...items)
   }
 }
 
@@ -364,37 +397,99 @@ Deno.serve(async (request) => {
     const body = await request.json().catch(() => ({}))
     const batchDate = typeof body.date === 'string' && body.date ? body.date : getBatchDate(startedAt)
     const allowRecentWindow = !body.date
+    const adjacentDays = body.includeAdjacentDays === true
+      ? Math.min(2, Math.max(1, Number(body.adjacentDays) || 1))
+      : 0
     const dryRun = body.dryRun === true
     const sourceResults: SourceResult[] = []
     const collectedItems: RawNewsItem[] = []
 
-    for (const source of NEWS_SOURCES) {
-      const { items, result } = await fetchSource(source, batchDate, startedAt, allowRecentWindow)
-      sourceResults.push(result)
-      collectedItems.push(...items)
+    await appendSources(
+      NEWS_SOURCES,
+      batchDate,
+      startedAt,
+      allowRecentWindow,
+      adjacentDays,
+      sourceResults,
+      collectedItems
+    )
+
+    const supabase = !dryRun
+      ? createClient(requireEnv('SUPABASE_URL'), getServiceRoleKey(), {
+          auth: { persistSession: false },
+        })
+      : null
+
+    async function filterSelectableItems(items: RawNewsItem[]) {
+      if (!supabase || body.skipOtherBatchUrls !== true || !items.length) return items
+
+      const { data: otherBatchRows, error: otherBatchError } = await supabase
+        .from('news')
+        .select('source_url')
+        .in('source_url', items.map((item) => item.source_url))
+        .neq('batch_date', batchDate)
+        .eq('status', 'published')
+
+      if (otherBatchError) throw otherBatchError
+
+      const reservedUrls = new Set((otherBatchRows || []).map((row) => row.source_url))
+      return items.filter((item) => !reservedUrls.has(item.source_url))
     }
 
-    let topItems = selectTopItems(collectedItems)
-    let expandedSearchUsed = false
+    let selectableItems = await filterSelectableItems(collectedItems)
+    let topItems = selectTopItems(selectableItems)
+    const enabledSourceTiers = ['primary']
 
     if (topItems.length < 5) {
-      expandedSearchUsed = true
+      enabledSourceTiers.push('focused-expanded')
+      await appendSources(
+        FOCUSED_EXPANDED_NEWS_SOURCES,
+        batchDate,
+        startedAt,
+        allowRecentWindow,
+        adjacentDays,
+        sourceResults,
+        collectedItems
+      )
 
-      for (const source of EXPANDED_NEWS_SOURCES) {
-        const { items, result } = await fetchSource(source, batchDate, startedAt, allowRecentWindow)
-        sourceResults.push(result)
-        collectedItems.push(...items)
-      }
+      selectableItems = await filterSelectableItems(collectedItems)
+      topItems = selectTopItems(selectableItems)
+    }
 
-      topItems = selectTopItems(collectedItems)
+    if (topItems.length < 5) {
+      enabledSourceTiers.push('broad-expanded')
+      await appendSources(
+        BROAD_EXPANDED_NEWS_SOURCES,
+        batchDate,
+        startedAt,
+        allowRecentWindow,
+        adjacentDays,
+        sourceResults,
+        collectedItems
+      )
+      selectableItems = await filterSelectableItems(collectedItems)
+      topItems = selectTopItems(selectableItems)
+    }
+
+    if (topItems.length < 5) {
+      enabledSourceTiers.push('domestic')
+      await appendSources(
+        DOMESTIC_NEWS_SOURCES,
+        batchDate,
+        startedAt,
+        allowRecentWindow,
+        adjacentDays,
+        sourceResults,
+        collectedItems
+      )
+      selectableItems = await filterSelectableItems(collectedItems)
+      topItems = selectTopItems(selectableItems)
     }
     let upserted = 0
     let archived = 0
 
     if (!dryRun) {
-      const supabase = createClient(requireEnv('SUPABASE_URL'), getServiceRoleKey(), {
-        auth: { persistSession: false },
-      })
+      if (!supabase) throw new Error('Supabase client is not available for persistence.')
 
       if (topItems.length) {
         const topUrls = topItems.map((item) => item.source_url)
@@ -462,8 +557,16 @@ Deno.serve(async (request) => {
       finished_at: finishedAt.toISOString(),
       source_count: sourceResults.length,
       primary_source_count: NEWS_SOURCES.length,
-      expanded_source_count: expandedSearchUsed ? EXPANDED_NEWS_SOURCES.length : 0,
-      expanded_search_used: expandedSearchUsed,
+      focused_expanded_source_count: enabledSourceTiers.includes('focused-expanded')
+        ? FOCUSED_EXPANDED_NEWS_SOURCES.length
+        : 0,
+      broad_expanded_source_count: enabledSourceTiers.includes('broad-expanded')
+        ? BROAD_EXPANDED_NEWS_SOURCES.length
+        : 0,
+      domestic_source_count: enabledSourceTiers.includes('domestic') ? DOMESTIC_NEWS_SOURCES.length : 0,
+      enabled_source_tiers: enabledSourceTiers,
+      adjacent_days: adjacentDays,
+      skipped_other_batch_urls: body.skipOtherBatchUrls === true,
       candidate_count: collectedItems.length,
       unique_candidate_count: new Set(collectedItems.map((item) => item.source_url)).size,
       top_count: topItems.length,
