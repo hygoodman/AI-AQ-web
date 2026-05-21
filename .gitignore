@@ -4,6 +4,7 @@ src/generated/
 build/
 .next/
 .vercel/
+supabase/.temp/
 .env
 .env.*
 !.env.example

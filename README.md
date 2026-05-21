@@ -192,25 +192,45 @@ supabase secrets set SUPABASE_URL=https://your-project-ref.supabase.co
 
 ### Supabase Cron
 
-在 Supabase SQL Editor 启用 `pg_cron` 和 `pg_net` 后，可每天定时调用 Edge Function。每天北京时间 08:00 对应 UTC 00:00，所以 cron 表达式使用 `0 0 * * *`。把 URL 和 secret 替换成自己的值：
+在 Supabase SQL Editor 启用 `pg_cron` 和 `pg_net` 后，可每天定时调用 Edge Function。每天北京时间 08:00 对应 UTC 00:00，所以 cron 表达式使用 `0 0 * * *`。把项目 URL 和 secret 存到 Vault，再让 Cron 读取 Vault 中的值：
 
 ```sql
-create extension if not exists pg_cron with schema extensions;
+create extension if not exists pg_cron with schema pg_catalog;
 create extension if not exists pg_net with schema extensions;
+
+select vault.create_secret(
+  'https://your-project-ref.supabase.co',
+  'daily_ai_news_project_url',
+  'Project URL for daily AI news cron'
+);
+
+select vault.create_secret(
+  'your-secret',
+  'daily_ai_news_job_secret',
+  'Shared secret for daily AI news cron'
+);
 
 select cron.schedule(
   'daily-ai-news',
   '0 0 * * *',
-  $$
+  $cron$
   select net.http_post(
-    url := 'https://your-project-ref.supabase.co/functions/v1/daily-ai-news',
+    url := (
+      select decrypted_secret
+      from vault.decrypted_secrets
+      where name = 'daily_ai_news_project_url'
+    ) || '/functions/v1/daily-ai-news',
     headers := jsonb_build_object(
       'content-type', 'application/json',
-      'x-news-job-secret', 'your-secret'
+      'x-news-job-secret', (
+        select decrypted_secret
+        from vault.decrypted_secrets
+        where name = 'daily_ai_news_job_secret'
+      )
     ),
     body := jsonb_build_object('trigger', 'cron')
   ) as request_id;
-  $$
+  $cron$
 );
 ```
 
