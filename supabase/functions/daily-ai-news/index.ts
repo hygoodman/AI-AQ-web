@@ -3,6 +3,8 @@ import {
   AI_NEWS_INTEREST_THEMES,
   AI_NEWS_KEYWORDS,
   AI_NEWS_LOW_INTEREST_SIGNALS,
+  AI_NEWS_PREFERRED_STORIES,
+  EXPANDED_NEWS_SOURCES,
   NEWS_SOURCES,
   type NewsSource,
 } from '../_shared/news-sources.ts'
@@ -15,6 +17,8 @@ type RawNewsItem = {
   published_at: string
   batch_date: string
   heat_score: number
+  preference_score: number
+  preference_names: string[]
   topic_score: number
   topic_names: string[]
   company_key: string
@@ -180,6 +184,18 @@ function assessInterestTopic(title: string, summary: string) {
   }
 }
 
+function assessPreference(title: string, summary: string) {
+  const searchableText = `${title} ${summary}`
+  const matchedPreferences = AI_NEWS_PREFERRED_STORIES.filter((preference) =>
+    preference.signals.some((signal) => hasSignal(searchableText, signal))
+  )
+
+  return {
+    names: matchedPreferences.map((preference) => preference.name),
+    score: matchedPreferences.reduce((score, preference) => score + preference.weight, 0),
+  }
+}
+
 function getCompanyKey(source: NewsSource, title: string, summary: string) {
   const text = `${source.name} ${title} ${summary}`.toLowerCase()
   if (text.includes('anthropic') || text.includes('claude')) return 'anthropic'
@@ -197,7 +213,15 @@ function getFreshnessScore(publishedAt: Date, now: Date) {
   return Math.max(0, 30 - ageHours * 1.25)
 }
 
-function scoreItem(source: NewsSource, title: string, summary: string, topicScore: number, publishedAt: Date, now: Date) {
+function scoreItem(
+  source: NewsSource,
+  title: string,
+  summary: string,
+  topicScore: number,
+  preferenceScore: number,
+  publishedAt: Date,
+  now: Date
+) {
   const searchableText = `${title} ${summary}`
   const sourceMatches = countKeywordMatches(searchableText, source.keywords)
   const globalMatches = countKeywordMatches(searchableText, AI_NEWS_KEYWORDS)
@@ -207,6 +231,7 @@ function scoreItem(source: NewsSource, title: string, summary: string, topicScor
       getFreshnessScore(publishedAt, now) +
       Math.min(30, (sourceMatches * 5) + (globalMatches * 3)) +
       Math.min(54, topicScore) +
+      Math.min(42, preferenceScore) +
       (source.highAuthority ? 12 : 0)
     ).toFixed(2)
   )
@@ -251,6 +276,7 @@ async function fetchSource(
         const rawSummary = getFeedNodeText(node, ['description', 'summary', 'content', 'encoded'])
         const summary = buildSummary(rawSummary, title)
         const topic = assessInterestTopic(title, summary)
+        const preference = assessPreference(title, summary)
 
         if (!title || !sourceUrl || Number.isNaN(publishedAt.getTime())) return null
         if (!isFreshEnough(publishedAt, now, batchDate, allowRecentWindow)) return null
@@ -264,7 +290,9 @@ async function fetchSource(
           source_url: sourceUrl,
           published_at: publishedAt.toISOString(),
           batch_date: batchDate,
-          heat_score: scoreItem(source, title, summary, topic.score, publishedAt, now),
+          heat_score: scoreItem(source, title, summary, topic.score, preference.score, publishedAt, now),
+          preference_score: preference.score,
+          preference_names: preference.names,
           topic_score: topic.score,
           topic_names: topic.names,
           company_key: getCompanyKey(source, title, summary),
@@ -346,7 +374,20 @@ Deno.serve(async (request) => {
       collectedItems.push(...items)
     }
 
-    const topItems = selectTopItems(collectedItems)
+    let topItems = selectTopItems(collectedItems)
+    let expandedSearchUsed = false
+
+    if (topItems.length < 5) {
+      expandedSearchUsed = true
+
+      for (const source of EXPANDED_NEWS_SOURCES) {
+        const { items, result } = await fetchSource(source, batchDate, startedAt, allowRecentWindow)
+        sourceResults.push(result)
+        collectedItems.push(...items)
+      }
+
+      topItems = selectTopItems(collectedItems)
+    }
     let upserted = 0
     let archived = 0
 
@@ -369,7 +410,14 @@ Deno.serve(async (request) => {
             .filter((row) => hasChineseText(row.title || ''))
             .map((row) => [row.source_url, row.title])
         )
-        const persistedItems = topItems.map(({ topic_score, topic_names, company_key, ...item }) => ({
+        const persistedItems = topItems.map(({
+          preference_score,
+          preference_names,
+          topic_score,
+          topic_names,
+          company_key,
+          ...item
+        }) => ({
           ...item,
           title: localizedTitles.get(item.source_url) || item.title,
         }))
@@ -412,7 +460,10 @@ Deno.serve(async (request) => {
       dry_run: dryRun,
       started_at: startedAt.toISOString(),
       finished_at: finishedAt.toISOString(),
-      source_count: NEWS_SOURCES.length,
+      source_count: sourceResults.length,
+      primary_source_count: NEWS_SOURCES.length,
+      expanded_source_count: expandedSearchUsed ? EXPANDED_NEWS_SOURCES.length : 0,
+      expanded_search_used: expandedSearchUsed,
       candidate_count: collectedItems.length,
       unique_candidate_count: new Set(collectedItems.map((item) => item.source_url)).size,
       top_count: topItems.length,
@@ -424,6 +475,8 @@ Deno.serve(async (request) => {
         source_name: item.source_name,
         source_url: item.source_url,
         heat_score: item.heat_score,
+        preference_score: item.preference_score,
+        preference_names: item.preference_names,
         topic_score: item.topic_score,
         topic_names: item.topic_names,
         company_key: item.company_key,

@@ -195,6 +195,63 @@ export const AI_NEWS_LOW_INTEREST_SIGNALS = [
   'rumor',
 ]
 
+export type NewsPreference = {
+  name: string
+  weight: number
+  signals: string[]
+}
+
+// Stories closer to hands-on learning and useful AI product changes
+// should outrank general AI business coverage.
+export const AI_NEWS_PREFERRED_STORIES: NewsPreference[] = [
+  {
+    name: 'coding-agent-product',
+    weight: 34,
+    signals: [
+      'coding agent',
+      'agent product',
+      'agent products',
+      'claude code',
+      'codex',
+      'github copilot',
+      'coding assistant',
+      'developer tool',
+      'software development',
+    ],
+  },
+  {
+    name: 'usable-product-change',
+    weight: 24,
+    signals: [
+      'product update',
+      'new feature',
+      'rolls out',
+      'rolling out',
+      'launches',
+      'released',
+      'generally available',
+      'available to',
+      'workflow',
+      'workspace',
+    ],
+  },
+  {
+    name: 'everyday-ai-application',
+    weight: 18,
+    signals: [
+      'ai search',
+      'ai tool',
+      'automation',
+      'productivity',
+      'workflows',
+      'for users',
+      'for developers',
+      'for teams',
+      'small businesses',
+    ],
+  },
+]
+
 export const NEWS_SOURCES: NewsSource[] = [
   {
     name: 'OpenAI News',
@@ -266,5 +323,34 @@ export const NEWS_SOURCES: NewsSource[] = [
     sourceWeight: 7,
     highAuthority: true,
     keywords: ['AI', 'artificial intelligence', 'enterprise AI', 'AI tools'],
+  },
+]
+
+// These broader searches are only used after the primary feeds cannot fill
+// the daily archive with enough preferred AI learning/application stories.
+export const EXPANDED_NEWS_SOURCES: NewsSource[] = [
+  {
+    name: 'AI Coding Tools Search',
+    feedUrl:
+      'https://news.google.com/rss/search?q=%28AI%20OR%20OpenAI%20OR%20Anthropic%20OR%20Claude%20OR%20Gemini%29%20%28Codex%20OR%20%22Claude%20Code%22%20OR%20%22coding%20agent%22%20OR%20%22AI%20coding%20tool%22%20OR%20Copilot%29&hl=en-US&gl=US&ceid=US:en',
+    sourceWeight: 6,
+    highAuthority: false,
+    keywords: ['AI', 'Codex', 'Claude Code', 'coding agent', 'AI coding tool', 'Copilot'],
+  },
+  {
+    name: 'AI Product Updates Search',
+    feedUrl:
+      'https://news.google.com/rss/search?q=%28OpenAI%20OR%20Anthropic%20OR%20Claude%20OR%20%22Google%20AI%22%20OR%20Gemini%20OR%20%22Microsoft%20Copilot%22%20OR%20DeepSeek%20OR%20%22Meta%20AI%22%29%20%28%22product%20update%22%20OR%20%22new%20feature%22%20OR%20%22AI%20tool%22%20OR%20workflow%20OR%20automation%29&hl=en-US&gl=US&ceid=US:en',
+    sourceWeight: 6,
+    highAuthority: false,
+    keywords: ['AI', 'AI tool', 'product update', 'new feature', 'workflow', 'automation'],
+  },
+  {
+    name: 'AI Agents Search',
+    feedUrl:
+      'https://news.google.com/rss/search?q=%28AI%20OR%20OpenAI%20OR%20Anthropic%20OR%20Gemini%29%20%28%22AI%20agent%22%20OR%20agentic%20OR%20%22agent%20product%22%20OR%20%22computer%20use%22%29&hl=en-US&gl=US&ceid=US:en',
+    sourceWeight: 6,
+    highAuthority: false,
+    keywords: ['AI', 'AI agent', 'agentic', 'agent product', 'computer use'],
   },
 ]
