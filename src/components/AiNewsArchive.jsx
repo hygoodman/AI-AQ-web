@@ -19,6 +19,39 @@ function formatNewsDate(value) {
   return value
 }
 
+function getWeekRange(batchDate) {
+  const date = new Date(`${batchDate}T00:00:00Z`)
+  if (Number.isNaN(date.getTime())) return null
+
+  const mondayOffset = (date.getUTCDay() + 6) % 7
+  const start = new Date(date)
+  start.setUTCDate(date.getUTCDate() - mondayOffset)
+
+  const end = new Date(start)
+  end.setUTCDate(start.getUTCDate() + 6)
+
+  return {
+    key: start.toISOString().slice(0, 10),
+    label: `${start.toISOString().slice(0, 10)} 至 ${end.toISOString().slice(0, 10)}`,
+  }
+}
+
+function groupArchiveWeeks(groups) {
+  const weeks = groups.reduce((weekMap, group) => {
+    const range = getWeekRange(group.batchDate)
+    if (!range) return weekMap
+
+    if (!weekMap.has(range.key)) {
+      weekMap.set(range.key, { ...range, groups: [] })
+    }
+
+    weekMap.get(range.key).groups.push(group)
+    return weekMap
+  }, new Map())
+
+  return [...weeks.values()].sort((left, right) => right.key.localeCompare(left.key))
+}
+
 function formatNewsTime(value) {
   if (!value) return ''
 
@@ -177,6 +210,8 @@ export default function AiNewsArchive() {
   const hasNews = useMemo(() => archiveGroups.some((group) => group.items.length), [archiveGroups])
   const selectedGroup = archiveGroups.find((group) => group.batchDate === selectedDate) || archiveGroups[0]
   const historyGroups = archiveGroups.filter((group) => group.batchDate !== latestDate)
+  const recentHistoryGroups = historyGroups.slice(0, 3)
+  const weeklyHistoryGroups = useMemo(() => groupArchiveWeeks(historyGroups.slice(3)), [historyGroups])
   const totalArticles = useMemo(
     () => archiveGroups.reduce((total, group) => total + group.items.length, 0),
     [archiveGroups]
@@ -251,14 +286,38 @@ export default function AiNewsArchive() {
               <p>查看过去日期的 AI 资讯摘录。</p>
               <div className="news-history-list">
                 {historyGroups.length ? (
-                  historyGroups.map((group) => (
-                    <ArchiveDateButton
-                      group={group}
-                      isSelected={selectedGroup?.batchDate === group.batchDate}
-                      key={group.batchDate}
-                      onToggle={toggleDate}
-                    />
-                  ))
+                  <>
+                    {recentHistoryGroups.map((group) => (
+                      <ArchiveDateButton
+                        group={group}
+                        isSelected={selectedGroup?.batchDate === group.batchDate}
+                        key={group.batchDate}
+                        onToggle={toggleDate}
+                      />
+                    ))}
+                    {weeklyHistoryGroups.map((week) => (
+                      <details
+                        className="news-history-week"
+                        defaultOpen={week.groups.some((group) => selectedGroup?.batchDate === group.batchDate)}
+                        key={week.key}
+                      >
+                        <summary>
+                          <span>{week.label}</span>
+                          <small>{week.groups.length} 组归档</small>
+                        </summary>
+                        <div className="news-history-week-days">
+                          {week.groups.map((group) => (
+                            <ArchiveDateButton
+                              group={group}
+                              isSelected={selectedGroup?.batchDate === group.batchDate}
+                              key={group.batchDate}
+                              onToggle={toggleDate}
+                            />
+                          ))}
+                        </div>
+                      </details>
+                    ))}
+                  </>
                 ) : (
                   <div className="empty-state news-empty">暂无更早的 AI 资讯。</div>
                 )}

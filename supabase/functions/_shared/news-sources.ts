@@ -21,6 +21,180 @@ export const AI_NEWS_KEYWORDS = [
   'AI model',
 ]
 
+export type NewsInterestTheme = {
+  name: string
+  weight: number
+  signals: string[]
+}
+
+// These themes keep the archive focused on learning and practical AI use,
+// instead of ranking every company mention that happens to include an AI keyword.
+export const AI_NEWS_INTEREST_THEMES: NewsInterestTheme[] = [
+  {
+    name: 'new-model',
+    weight: 22,
+    signals: [
+      'new model',
+      'model release',
+      'model launch',
+      'reasoning model',
+      'multimodal model',
+      'open-weight',
+      'open weight',
+      'gpt-',
+      'claude 4',
+      'claude opus',
+      'claude sonnet',
+      'gemini 2',
+      'gemini 3',
+      'llama 4',
+      'qwen ',
+      'deepseek v',
+      'deepseek r',
+    ],
+  },
+  {
+    name: 'product-update',
+    weight: 18,
+    signals: [
+      'new feature',
+      'product update',
+      'feature update',
+      'rolling out',
+      'rolls out',
+      'launches',
+      'released',
+      'release',
+      'preview',
+      'generally available',
+      'availability',
+      'upgrades',
+    ],
+  },
+  {
+    name: 'tool-usability',
+    weight: 18,
+    signals: [
+      'ai tool',
+      'tools',
+      'api',
+      'app',
+      'extension',
+      'workspace',
+      'automation',
+      'available to',
+      'workflow',
+      'productivity',
+      'users',
+    ],
+  },
+  {
+    name: 'agent',
+    weight: 24,
+    signals: [
+      'agent',
+      'agentic',
+      'computer use',
+      'tool use',
+      'task automation',
+      'orchestration',
+      'mcp',
+      'model context protocol',
+    ],
+  },
+  {
+    name: 'coding-tool',
+    weight: 24,
+    signals: [
+      'coding',
+      'code ',
+      'developer',
+      'programming',
+      'codex',
+      'claude code',
+      'code assistant',
+      'coding assistant',
+      'ide',
+      'github copilot',
+    ],
+  },
+  {
+    name: 'ai-search',
+    weight: 22,
+    signals: [
+      'ai search',
+      'search',
+      'deep research',
+      'research assistant',
+      'answer engine',
+      'browser',
+    ],
+  },
+  {
+    name: 'everyday-workflow',
+    weight: 16,
+    signals: [
+      'workflow',
+      'productivity',
+      'workplace',
+      'office',
+      'creator',
+      'everyday',
+      'teams',
+      'students',
+      'learning',
+    ],
+  },
+  {
+    name: 'enterprise-adoption',
+    weight: 14,
+    signals: [
+      'enterprise ai',
+      'enterprise',
+      'deploy',
+      'deployment',
+      'adoption',
+      'case study',
+      'customers',
+      'integrate',
+      'integration',
+      'rollout',
+    ],
+  },
+  {
+    name: 'industry-shift',
+    weight: 14,
+    signals: [
+      'inference',
+      'gpu',
+      'chip',
+      'infrastructure',
+      'open source',
+      'regulation',
+      'safety standard',
+      'platform',
+      'benchmark',
+    ],
+  },
+]
+
+export const AI_NEWS_LOW_INTEREST_SIGNALS = [
+  'profit',
+  'revenue',
+  'valuation',
+  'value soars',
+  'funding',
+  'raises ',
+  'series ',
+  'earnings',
+  'stock ',
+  'share price',
+  'lawsuit',
+  'trial',
+  'jury',
+  'rumor',
+]
+
 export const NEWS_SOURCES: NewsSource[] = [
   {
     name: 'OpenAI News',

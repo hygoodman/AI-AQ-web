@@ -140,6 +140,8 @@ create index if not exists news_batch_rank_idx on public.news (batch_date desc, 
 
 Edge Function 文件在 `supabase/functions/daily-ai-news/index.ts`，新闻源集中放在 `supabase/functions/_shared/news-sources.ts`。当前使用 RSS 源真实抓取，不使用 mock 数据，也不需要第三方新闻 API key。
 
+筛选会先判断资讯是否属于 AI 学习与应用关注范围，例如新模型、产品更新、AI Agent、编程工具、AI 搜索、工作流变化和企业落地，再按来源权重、新鲜度、主题匹配度评分。每天 Top 5 还会限制同一来源最多 2 条、同一公司最多 2 条；如果当天 RSS 候选不足，归档会保留实际筛出的条数。
+
 函数服务端需要配置这些 Supabase Edge Function secrets：
 
 ```bash

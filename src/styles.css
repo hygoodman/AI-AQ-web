@@ -675,6 +675,62 @@ button {
   margin-top: 24px;
 }
 
+.news-history-week {
+  border: 1px solid #d5e1f4;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.news-history-week summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 12px;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 14px 18px;
+  color: #101b33;
+  cursor: pointer;
+  list-style: none;
+}
+
+.news-history-week summary::-webkit-details-marker {
+  display: none;
+}
+
+.news-history-week summary::after {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #526990;
+  border-bottom: 2px solid #526990;
+  content: "";
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.news-history-week[open] summary::after {
+  transform: translateY(3px) rotate(225deg);
+}
+
+.news-history-week summary span {
+  font-weight: 800;
+}
+
+.news-history-week summary small {
+  color: #536b94;
+  font-weight: 700;
+}
+
+.news-history-week-days {
+  display: grid;
+  gap: 12px;
+  padding: 0 12px 12px;
+}
+
+.news-history-week .news-archive-day {
+  min-height: 76px;
+}
+
 .news-archive-day {
   display: grid;
   width: 100%;
@@ -971,6 +1027,11 @@ button {
 
   .news-archive-day {
     min-height: 82px;
+    padding: 14px;
+  }
+
+  .news-history-week summary {
+    min-height: 62px;
     padding: 14px;
   }
 

@@ -1,5 +1,11 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
-import { AI_NEWS_KEYWORDS, NEWS_SOURCES, type NewsSource } from '../_shared/news-sources.ts'
+import {
+  AI_NEWS_INTEREST_THEMES,
+  AI_NEWS_KEYWORDS,
+  AI_NEWS_LOW_INTEREST_SIGNALS,
+  NEWS_SOURCES,
+  type NewsSource,
+} from '../_shared/news-sources.ts'
 
 type RawNewsItem = {
   title: string
@@ -9,6 +15,9 @@ type RawNewsItem = {
   published_at: string
   batch_date: string
   heat_score: number
+  topic_score: number
+  topic_names: string[]
+  company_key: string
 }
 
 type SourceResult = {
@@ -129,6 +138,10 @@ function normalizeUrl(value: string) {
   }
 }
 
+function hasChineseText(value: string) {
+  return /[\u3400-\u9fff]/.test(value)
+}
+
 function countKeywordMatches(text: string, keywords: string[]) {
   const lowerText = text.toLowerCase()
   return keywords.reduce((count, keyword) => {
@@ -141,12 +154,50 @@ function countKeywordMatches(text: string, keywords: string[]) {
   }, 0)
 }
 
+function hasSignal(text: string, signal: string) {
+  const lowerText = text.toLowerCase()
+  const lowerSignal = signal.toLowerCase()
+  const trimmedSignal = lowerSignal.trim()
+  if (/^[a-z0-9]+$/.test(trimmedSignal) && trimmedSignal.length <= 4) {
+    return new RegExp(`\\b${escapeRegExp(trimmedSignal)}\\b`, 'i').test(text)
+  }
+  return lowerText.includes(lowerSignal)
+}
+
+function assessInterestTopic(title: string, summary: string) {
+  const searchableText = `${title} ${summary}`
+  const matchedThemes = AI_NEWS_INTEREST_THEMES.filter((theme) =>
+    theme.signals.some((signal) => hasSignal(searchableText, signal))
+  )
+  const lowInterestMatches = AI_NEWS_LOW_INTEREST_SIGNALS.filter((signal) => hasSignal(searchableText, signal))
+  const positiveScore = matchedThemes.reduce((score, theme) => score + theme.weight, 0)
+  const lowInterestPenalty = Math.min(28, lowInterestMatches.length * 9)
+
+  return {
+    names: matchedThemes.map((theme) => theme.name),
+    score: Math.max(0, positiveScore - lowInterestPenalty),
+    lowInterestMatches,
+  }
+}
+
+function getCompanyKey(source: NewsSource, title: string, summary: string) {
+  const text = `${source.name} ${title} ${summary}`.toLowerCase()
+  if (text.includes('anthropic') || text.includes('claude')) return 'anthropic'
+  if (text.includes('openai') || text.includes('chatgpt') || /\bgpt\b/.test(text)) return 'openai'
+  if (text.includes('google') || text.includes('gemini') || text.includes('deepmind')) return 'google'
+  if (text.includes('meta') || text.includes('llama')) return 'meta'
+  if (text.includes('microsoft') || text.includes('copilot')) return 'microsoft'
+  if (text.includes('nvidia')) return 'nvidia'
+  if (text.includes('deepseek')) return 'deepseek'
+  return source.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+}
+
 function getFreshnessScore(publishedAt: Date, now: Date) {
   const ageHours = Math.max(0, (now.getTime() - publishedAt.getTime()) / 36e5)
   return Math.max(0, 30 - ageHours * 1.25)
 }
 
-function scoreItem(source: NewsSource, title: string, summary: string, publishedAt: Date, now: Date) {
+function scoreItem(source: NewsSource, title: string, summary: string, topicScore: number, publishedAt: Date, now: Date) {
   const searchableText = `${title} ${summary}`
   const sourceMatches = countKeywordMatches(searchableText, source.keywords)
   const globalMatches = countKeywordMatches(searchableText, AI_NEWS_KEYWORDS)
@@ -155,18 +206,25 @@ function scoreItem(source: NewsSource, title: string, summary: string, published
       source.sourceWeight * 10 +
       getFreshnessScore(publishedAt, now) +
       Math.min(30, (sourceMatches * 5) + (globalMatches * 3)) +
+      Math.min(54, topicScore) +
       (source.highAuthority ? 12 : 0)
     ).toFixed(2)
   )
 }
 
-function isFreshEnough(publishedAt: Date, now: Date, batchDate: string) {
+function isFreshEnough(publishedAt: Date, now: Date, batchDate: string, allowRecentWindow: boolean) {
   if (getBatchDate(publishedAt) === batchDate) return true
+  if (!allowRecentWindow) return false
   const ageHours = (now.getTime() - publishedAt.getTime()) / 36e5
   return ageHours >= 0 && ageHours <= 36
 }
 
-async function fetchSource(source: NewsSource, batchDate: string, now: Date): Promise<{ items: RawNewsItem[]; result: SourceResult }> {
+async function fetchSource(
+  source: NewsSource,
+  batchDate: string,
+  now: Date,
+  allowRecentWindow: boolean
+): Promise<{ items: RawNewsItem[]; result: SourceResult }> {
   const result: SourceResult = { source: source.name, fetched: 0, accepted: 0, errors: [] }
 
   try {
@@ -192,10 +250,12 @@ async function fetchSource(source: NewsSource, batchDate: string, now: Date): Pr
         const publishedAt = new Date(rawPublishedAt)
         const rawSummary = getFeedNodeText(node, ['description', 'summary', 'content', 'encoded'])
         const summary = buildSummary(rawSummary, title)
+        const topic = assessInterestTopic(title, summary)
 
         if (!title || !sourceUrl || Number.isNaN(publishedAt.getTime())) return null
-        if (!isFreshEnough(publishedAt, now, batchDate)) return null
+        if (!isFreshEnough(publishedAt, now, batchDate, allowRecentWindow)) return null
         if (!countKeywordMatches(`${title} ${summary}`, [...AI_NEWS_KEYWORDS, ...source.keywords])) return null
+        if (!topic.names.length || topic.score < 14) return null
 
         return {
           title,
@@ -204,7 +264,10 @@ async function fetchSource(source: NewsSource, batchDate: string, now: Date): Pr
           source_url: sourceUrl,
           published_at: publishedAt.toISOString(),
           batch_date: batchDate,
-          heat_score: scoreItem(source, title, summary, publishedAt, now),
+          heat_score: scoreItem(source, title, summary, topic.score, publishedAt, now),
+          topic_score: topic.score,
+          topic_names: topic.names,
+          company_key: getCompanyKey(source, title, summary),
         }
       })
       .filter((item): item is RawNewsItem => Boolean(item))
@@ -227,13 +290,26 @@ function selectTopItems(items: RawNewsItem[]) {
     }
   }
 
-  return [...byUrl.values()]
+  const rankedItems = [...byUrl.values()]
     .sort((left, right) => {
       if (right.heat_score !== left.heat_score) return right.heat_score - left.heat_score
       return right.published_at.localeCompare(left.published_at)
     })
-    .slice(0, 5)
-    .map((item, index) => ({
+  const selectedItems: RawNewsItem[] = []
+  const sourceCounts = new Map<string, number>()
+  const companyCounts = new Map<string, number>()
+
+  for (const item of rankedItems) {
+    if ((sourceCounts.get(item.source_name) || 0) >= 2) continue
+    if ((companyCounts.get(item.company_key) || 0) >= 2) continue
+
+    selectedItems.push(item)
+    sourceCounts.set(item.source_name, (sourceCounts.get(item.source_name) || 0) + 1)
+    companyCounts.set(item.company_key, (companyCounts.get(item.company_key) || 0) + 1)
+    if (selectedItems.length === 5) break
+  }
+
+  return selectedItems.map((item, index) => ({
       ...item,
       rank: index + 1,
       status: 'published',
@@ -259,12 +335,13 @@ Deno.serve(async (request) => {
     const startedAt = new Date()
     const body = await request.json().catch(() => ({}))
     const batchDate = typeof body.date === 'string' && body.date ? body.date : getBatchDate(startedAt)
+    const allowRecentWindow = !body.date
     const dryRun = body.dryRun === true
     const sourceResults: SourceResult[] = []
     const collectedItems: RawNewsItem[] = []
 
     for (const source of NEWS_SOURCES) {
-      const { items, result } = await fetchSource(source, batchDate, startedAt)
+      const { items, result } = await fetchSource(source, batchDate, startedAt, allowRecentWindow)
       sourceResults.push(result)
       collectedItems.push(...items)
     }
@@ -279,35 +356,52 @@ Deno.serve(async (request) => {
       })
 
       if (topItems.length) {
-        const { error: upsertError } = await supabase.from('news').upsert(topItems, {
+        const topUrls = topItems.map((item) => item.source_url)
+        const { data: existingRows, error: existingRowsError } = await supabase
+          .from('news')
+          .select('source_url,title')
+          .in('source_url', topUrls)
+
+        if (existingRowsError) throw existingRowsError
+
+        const localizedTitles = new Map(
+          (existingRows || [])
+            .filter((row) => hasChineseText(row.title || ''))
+            .map((row) => [row.source_url, row.title])
+        )
+        const persistedItems = topItems.map(({ topic_score, topic_names, company_key, ...item }) => ({
+          ...item,
+          title: localizedTitles.get(item.source_url) || item.title,
+        }))
+        const { error: upsertError } = await supabase.from('news').upsert(persistedItems, {
           onConflict: 'source_url',
         })
 
         if (upsertError) throw upsertError
         upserted = topItems.length
+      }
 
-        const topUrls = new Set(topItems.map((item) => item.source_url))
-        const { data: sameDateRows, error: sameDateError } = await supabase
+      const topUrls = new Set(topItems.map((item) => item.source_url))
+      const { data: sameDateRows, error: sameDateError } = await supabase
+        .from('news')
+        .select('id,source_url')
+        .eq('batch_date', batchDate)
+        .eq('status', 'published')
+
+      if (sameDateError) throw sameDateError
+
+      const staleIds = (sameDateRows || [])
+        .filter((row) => !topUrls.has(row.source_url))
+        .map((row) => row.id)
+
+      if (staleIds.length) {
+        const { error: archiveError } = await supabase
           .from('news')
-          .select('id,source_url')
-          .eq('batch_date', batchDate)
-          .eq('status', 'published')
+          .update({ status: 'archived', rank: null })
+          .in('id', staleIds)
 
-        if (sameDateError) throw sameDateError
-
-        const staleIds = (sameDateRows || [])
-          .filter((row) => !topUrls.has(row.source_url))
-          .map((row) => row.id)
-
-        if (staleIds.length) {
-          const { error: archiveError } = await supabase
-            .from('news')
-            .update({ status: 'archived', rank: null })
-            .in('id', staleIds)
-
-          if (archiveError) throw archiveError
-          archived = staleIds.length
-        }
+        if (archiveError) throw archiveError
+        archived = staleIds.length
       }
     }
 
@@ -330,6 +424,9 @@ Deno.serve(async (request) => {
         source_name: item.source_name,
         source_url: item.source_url,
         heat_score: item.heat_score,
+        topic_score: item.topic_score,
+        topic_names: item.topic_names,
+        company_key: item.company_key,
       })),
       source_results: sourceResults,
     }
