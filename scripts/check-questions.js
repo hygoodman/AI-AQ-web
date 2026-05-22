@@ -14,7 +14,6 @@ const requiredFields = [
   'options',
   'answer',
   'explanation',
-  'workExample',
   'tags',
   'createdAt',
 ]

@@ -1,38 +1,34 @@
-const questions = [
+module.exports = { questions: [
   {
     "id": "q_ai_basic_001",
     "categoryId": "ai_basic",
     "categoryName": "AI 基础知识",
     "difficulty": "easy",
     "type": "single",
-    "question": "生成式 AI 主要指的是什么？",
+    "question": "AI更准确的理解是什么？",
     "options": [
       {
         "key": "A",
-        "text": "只能用来搜索网页的工具"
+        "text": "把所有人工经验写成固定流程"
       },
       {
         "key": "B",
-        "text": "可以根据输入生成文本、图片、音频或视频等内容的 AI 技术"
+        "text": "让机器基于数据和算法完成理解、生成或判断任务"
       },
       {
         "key": "C",
-        "text": "只能用于计算数学题的软件"
+        "text": "把网页内容按时间顺序排列"
       },
       {
         "key": "D",
-        "text": "只能由程序员使用的开发工具"
+        "text": "让软件只执行预设按钮操作"
       }
     ],
     "answer": "B",
-    "explanation": "生成式 AI 可以根据用户输入生成新的内容，比如文本、图片、音频、视频和代码。",
-    "workExample": "你可以用生成式 AI 写文案、整理表格、生成图片提示词、修改邮件和分析评论数据。",
-    "tags": [
-      "生成式AI",
-      "AI基础",
-      "入门"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "AI的核心是用算法和数据完成类似识别、理解、生成、决策的任务。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_ai_basic_002",
@@ -40,33 +36,30 @@ const questions = [
     "categoryName": "AI 基础知识",
     "difficulty": "easy",
     "type": "single",
-    "question": "大语言模型更擅长处理哪类任务？",
+    "question": "机器学习主要强调什么？",
     "options": [
       {
         "key": "A",
-        "text": "理解和生成自然语言内容"
+        "text": "提前写好每一种业务规则"
       },
       {
         "key": "B",
-        "text": "直接维修电脑硬件"
+        "text": "把文件按类别自动归档"
       },
       {
         "key": "C",
-        "text": "保证所有回答永远正确"
+        "text": "让程序只根据菜单执行命令"
       },
       {
         "key": "D",
-        "text": "替用户自动完成线下工作"
+        "text": "从数据样本中学习规律并用于新情况判断"
       }
     ],
-    "answer": "A",
-    "explanation": "大语言模型擅长理解、总结、改写、生成和推理文字内容，但不代表它不会出错。",
-    "workExample": "写邮件、总结会议、生成提纲、改写表达，都是大语言模型常见的办公用法。",
-    "tags": [
-      "大语言模型",
-      "文本生成"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "机器学习不是人工写完所有规则，而是让模型从数据中学习规律。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_ai_basic_003",
@@ -74,33 +67,30 @@ const questions = [
     "categoryName": "AI 基础知识",
     "difficulty": "easy",
     "type": "single",
-    "question": "AI 回答中常说的“幻觉”是什么意思？",
+    "question": "大语言模型最典型的能力是什么？",
     "options": [
       {
         "key": "A",
-        "text": "AI 运行速度变慢"
+        "text": "理解和生成自然语言内容"
       },
       {
         "key": "B",
-        "text": "AI 编造了看起来像真的内容"
+        "text": "只负责存储用户输入"
       },
       {
         "key": "C",
-        "text": "AI 只能回答图片问题"
+        "text": "专门控制硬件电机运行"
       },
       {
         "key": "D",
-        "text": "AI 自动删除了数据"
+        "text": "只根据网页标题排序"
       }
     ],
-    "answer": "B",
-    "explanation": "AI 幻觉是指模型生成了不准确甚至不存在的信息，但表达得很像事实。",
-    "workExample": "涉及数据、法律、医疗、政策和引用来源时，要用可靠资料二次核查。",
-    "tags": [
-      "幻觉",
-      "事实核查"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "A",
+    "explanation": "大语言模型主要围绕文本理解、生成、总结、改写和问答。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_ai_basic_004",
@@ -108,33 +98,30 @@ const questions = [
     "categoryName": "AI 基础知识",
     "difficulty": "easy",
     "type": "single",
-    "question": "为什么给 AI 提供上下文很重要？",
+    "question": "AI幻觉通常指什么？",
     "options": [
       {
         "key": "A",
-        "text": "可以让 AI 更了解任务背景和目标"
+        "text": "模型输出速度变慢"
       },
       {
         "key": "B",
-        "text": "可以让 AI 不需要任何指令"
+        "text": "系统缓存占用过高"
       },
       {
         "key": "C",
-        "text": "可以保证 AI 永远不出错"
+        "text": "生成看似合理但事实不准确的内容"
       },
       {
         "key": "D",
-        "text": "可以让 AI 自动联网搜索所有资料"
+        "text": "工具界面出现视觉特效"
       }
     ],
-    "answer": "A",
-    "explanation": "上下文越清楚，AI 越容易判断你的目标、对象、限制条件和输出方式。",
-    "workExample": "让 AI 写活动文案时，补充产品、用户、渠道和活动目标，结果通常更可用。",
-    "tags": [
-      "上下文",
-      "任务描述"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "AI幻觉是大模型生成中常见风险，尤其需要在事实类问题上核查。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_ai_basic_005",
@@ -142,33 +129,495 @@ const questions = [
     "categoryName": "AI 基础知识",
     "difficulty": "easy",
     "type": "single",
-    "question": "使用 AI 时，下面哪种态度更合理？",
+    "question": "训练数据对AI的影响更接近哪项？",
     "options": [
       {
         "key": "A",
-        "text": "完全照搬 AI 的全部输出"
+        "text": "决定软件按钮的排列方式"
       },
       {
         "key": "B",
-        "text": "把 AI 当作辅助工具，并进行人工判断"
+        "text": "帮助模型形成对语言、图像或任务的规律理解"
       },
       {
         "key": "C",
-        "text": "只要 AI 说了就一定正确"
+        "text": "直接决定用户账号权限"
       },
       {
         "key": "D",
-        "text": "让 AI 代替所有专业决策"
+        "text": "只影响文件下载速度"
       }
     ],
     "answer": "B",
-    "explanation": "AI 很适合辅助生成、整理和启发，但重要内容仍需要人工判断和复核。",
-    "workExample": "发布商业文案前，可以先让 AI 出草稿，再由人检查事实、品牌语气和合规风险。",
-    "tags": [
-      "AI常识",
-      "人工审核"
+    "explanation": "模型通过训练数据学习模式，数据质量会影响输出质量。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_006",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "多模态AI通常指什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "能够处理文字、图片、音频或视频等多种信息"
+      },
+      {
+        "key": "B",
+        "text": "只能处理一种固定文本格式"
+      },
+      {
+        "key": "C",
+        "text": "只能在多个账号之间切换"
+      },
+      {
+        "key": "D",
+        "text": "只能使用多种颜色显示结果"
+      }
     ],
-    "createdAt": "2026-05-14"
+    "answer": "A",
+    "explanation": "多模态强调输入和输出信息类型更丰富。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_007",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "为什么AI回答重要问题时需要人工核查？",
+    "options": [
+      {
+        "key": "A",
+        "text": "因为AI不能生成中文"
+      },
+      {
+        "key": "B",
+        "text": "因为AI只能回答选择题"
+      },
+      {
+        "key": "C",
+        "text": "因为AI只会复制用户原文"
+      },
+      {
+        "key": "D",
+        "text": "因为模型可能存在错误、遗漏或过时信息"
+      }
+    ],
+    "answer": "D",
+    "explanation": "重要决策不能完全依赖AI输出，需要用可靠来源确认。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_008",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "模型参数大致可以理解为什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用户设置的字体大小"
+      },
+      {
+        "key": "B",
+        "text": "网页浏览器的缓存记录"
+      },
+      {
+        "key": "C",
+        "text": "模型内部用于学习和生成的数值结构"
+      },
+      {
+        "key": "D",
+        "text": "文件导出时的格式选项"
+      }
+    ],
+    "answer": "C",
+    "explanation": "参数是模型能力的重要组成部分，通常与模型学习到的模式有关。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_009",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI和搜索引擎的差异更接近哪项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "AI偏理解与生成，搜索引擎偏检索已有网页"
+      },
+      {
+        "key": "B",
+        "text": "AI只会打开网页链接"
+      },
+      {
+        "key": "C",
+        "text": "搜索引擎负责生成视频镜头"
+      },
+      {
+        "key": "D",
+        "text": "两者没有任何功能差异"
+      }
+    ],
+    "answer": "A",
+    "explanation": "搜索引擎主要找信息，生成式AI更偏理解、组织和生成内容。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_010",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "使用AI时，哪类信息更应谨慎输入？",
+    "options": [
+      {
+        "key": "A",
+        "text": "公开产品介绍"
+      },
+      {
+        "key": "B",
+        "text": "普通学习问题"
+      },
+      {
+        "key": "C",
+        "text": "常见行业概念"
+      },
+      {
+        "key": "D",
+        "text": "客户隐私、账号密码、身份资料等敏感信息"
+      }
+    ],
+    "answer": "D",
+    "explanation": "涉及个人隐私、商业机密和账号安全的信息应谨慎处理。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_011",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "深度学习和机器学习的关系更接近哪项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "深度学习完全不属于AI"
+      },
+      {
+        "key": "B",
+        "text": "机器学习只用于网页搜索"
+      },
+      {
+        "key": "C",
+        "text": "深度学习是机器学习中的一种重要方法"
+      },
+      {
+        "key": "D",
+        "text": "两者是完全相同的词"
+      }
+    ],
+    "answer": "C",
+    "explanation": "深度学习属于机器学习方向，常用于图像、语音、语言等任务。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_012",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "生成式AI主要强调什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "根据输入生成文本、图片、音频或视频等内容"
+      },
+      {
+        "key": "B",
+        "text": "只把旧文件重新命名"
+      },
+      {
+        "key": "C",
+        "text": "只记录用户点击次数"
+      },
+      {
+        "key": "D",
+        "text": "只检查电脑是否联网"
+      }
+    ],
+    "answer": "A",
+    "explanation": "生成式AI的关键是生成新内容，常见于文案、图片和视频制作。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_013",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "上下文窗口主要影响什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "屏幕显示区域的亮度"
+      },
+      {
+        "key": "B",
+        "text": "模型一次能参考和处理的信息量"
+      },
+      {
+        "key": "C",
+        "text": "账号的登录方式"
+      },
+      {
+        "key": "D",
+        "text": "输出文件的保存路径"
+      }
+    ],
+    "answer": "B",
+    "explanation": "上下文窗口越大，模型通常能参考更长的对话或文档内容。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_014",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI模型微调通常是为了什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "降低电脑屏幕分辨率"
+      },
+      {
+        "key": "B",
+        "text": "清理浏览器缓存"
+      },
+      {
+        "key": "C",
+        "text": "关闭所有网络连接"
+      },
+      {
+        "key": "D",
+        "text": "让模型更适应特定任务、行业或表达风格"
+      }
+    ],
+    "answer": "D",
+    "explanation": "微调常用于让模型在某些领域、格式或任务中表现更稳定。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_015",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "RAG检索增强生成主要解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让模型完全不需要资料"
+      },
+      {
+        "key": "B",
+        "text": "让图片自动变高清"
+      },
+      {
+        "key": "C",
+        "text": "让模型结合外部知识库生成更有依据的回答"
+      },
+      {
+        "key": "D",
+        "text": "让软件启动更快"
+      }
+    ],
+    "answer": "C",
+    "explanation": "RAG通过检索资料再生成回答，适合知识库问答和企业文档问答。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_016",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "Token在大模型中通常可以理解为什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用户充值金额"
+      },
+      {
+        "key": "B",
+        "text": "文本被模型处理时拆分出的基本片段"
+      },
+      {
+        "key": "C",
+        "text": "图片的像素尺寸"
+      },
+      {
+        "key": "D",
+        "text": "软件的版本号"
+      }
+    ],
+    "answer": "B",
+    "explanation": "模型一般按token处理输入和输出，token会影响上下文长度和费用。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_017",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI模型评测的主要意义是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用任务指标衡量模型在不同场景下的表现"
+      },
+      {
+        "key": "B",
+        "text": "给模型更换界面主题"
+      },
+      {
+        "key": "C",
+        "text": "让工具自动续费"
+      },
+      {
+        "key": "D",
+        "text": "决定电脑硬盘容量"
+      }
+    ],
+    "answer": "A",
+    "explanation": "评测能帮助判断模型是否适合具体任务。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_018",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI Agent更接近哪种概念？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只负责显示网页广告"
+      },
+      {
+        "key": "B",
+        "text": "只能把文本改成表格"
+      },
+      {
+        "key": "C",
+        "text": "能围绕目标调用工具、拆解步骤并执行任务的智能体"
+      },
+      {
+        "key": "D",
+        "text": "只能离线保存文件"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Agent强调目标、规划、工具调用和执行闭环。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_019",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "开源模型和闭源模型的主要区别之一是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "是否只能生成中文"
+      },
+      {
+        "key": "B",
+        "text": "是否只能在手机上运行"
+      },
+      {
+        "key": "C",
+        "text": "是否必须用于图像任务"
+      },
+      {
+        "key": "D",
+        "text": "模型权重、代码或使用方式的开放程度不同"
+      }
+    ],
+    "answer": "D",
+    "explanation": "开源和闭源在开放程度、部署方式、成本和可控性上存在差异。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_ai_basic_020",
+    "categoryId": "ai_basic",
+    "categoryName": "AI 基础知识",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI落地应用最重要的前提之一是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "先选择最贵的工具"
+      },
+      {
+        "key": "B",
+        "text": "明确具体场景、数据来源和业务目标"
+      },
+      {
+        "key": "C",
+        "text": "只关注界面是否好看"
+      },
+      {
+        "key": "D",
+        "text": "完全不考虑用户流程"
+      }
+    ],
+    "answer": "B",
+    "explanation": "AI应用需要服务具体问题，不能只停留在工具演示。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_prompt_001",
@@ -176,33 +625,30 @@ const questions = [
     "categoryName": "提示词技巧",
     "difficulty": "easy",
     "type": "single",
-    "question": "下面哪一种提示词写法更容易让 AI 输出可用结果？",
+    "question": "一个清晰的提示词通常应优先说明什么？",
     "options": [
       {
         "key": "A",
-        "text": "帮我写一下"
+        "text": "任务目标、背景信息、限制条件和输出格式"
       },
       {
         "key": "B",
-        "text": "随便写一个"
+        "text": "只写一个关键词让AI猜"
       },
       {
         "key": "C",
-        "text": "请按照目标、背景、要求、格式四部分输出"
+        "text": "尽量不给任何上下文"
       },
       {
         "key": "D",
-        "text": "你自己看着办"
+        "text": "只说明工具名称"
       }
     ],
-    "answer": "C",
-    "explanation": "清晰的提示词通常包含目标、背景、具体要求和输出格式，AI 更容易理解任务。",
-    "workExample": "写短视频脚本时，可以告诉 AI 产品、目标用户、视频时长、风格和输出格式。",
-    "tags": [
-      "提示词",
-      "输出格式"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "A",
+    "explanation": "提示词越能明确任务边界，输出越容易接近需求。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_prompt_002",
@@ -210,33 +656,30 @@ const questions = [
     "categoryName": "提示词技巧",
     "difficulty": "easy",
     "type": "single",
-    "question": "想让 AI 输出表格，提示词中最好补充什么？",
+    "question": "在提示词中指定角色的主要价值是什么？",
     "options": [
       {
         "key": "A",
-        "text": "只说“整理一下”"
+        "text": "让AI自动切换账号"
       },
       {
         "key": "B",
-        "text": "明确表格列名和每列含义"
+        "text": "让AI跳过任务理解"
       },
       {
         "key": "C",
-        "text": "让 AI 自己决定所有内容"
+        "text": "让回答更贴近特定身份、经验和表达视角"
       },
       {
         "key": "D",
-        "text": "不提供任何原始资料"
+        "text": "让AI隐藏所有解释"
       }
     ],
-    "answer": "B",
-    "explanation": "明确列名、字段含义和输出格式，可以减少返工，让结果更容易复制使用。",
-    "workExample": "例如要求输出“用户痛点、对应卖点、推荐标题、适用渠道”四列。",
-    "tags": [
-      "表格",
-      "结构化输出"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "角色设定能引导回答的专业角度和语气风格。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_prompt_003",
@@ -244,33 +687,30 @@ const questions = [
     "categoryName": "提示词技巧",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 扮演角色的主要作用是什么？",
+    "question": "\"请用表格形式输出\"属于哪类提示要求？",
     "options": [
       {
         "key": "A",
-        "text": "限制 AI 只能说一句话"
+        "text": "事实来源要求"
       },
       {
         "key": "B",
-        "text": "帮助 AI 按某种专业视角和语气回答"
+        "text": "目标人群要求"
       },
       {
         "key": "C",
-        "text": "让 AI 跳过任务说明"
+        "text": "内容风格要求"
       },
       {
         "key": "D",
-        "text": "保证内容一定没有错误"
+        "text": "输出格式要求"
       }
     ],
-    "answer": "B",
-    "explanation": "角色设定可以帮助 AI 选择更合适的视角、判断标准和表达方式。",
-    "workExample": "你可以让 AI 扮演“资深电商运营”，来优化商品详情页卖点。",
-    "tags": [
-      "角色设定",
-      "专业视角"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "表格、列表、JSON等都属于输出格式约束。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_prompt_004",
@@ -278,33 +718,30 @@ const questions = [
     "categoryName": "提示词技巧",
     "difficulty": "easy",
     "type": "single",
-    "question": "如果 AI 第一次回答不理想，最好的做法通常是？",
+    "question": "想让AI文案更适合社媒平台，最好补充什么？",
     "options": [
       {
         "key": "A",
-        "text": "直接放弃"
+        "text": "电脑型号和网络速度"
       },
       {
         "key": "B",
-        "text": "补充限制条件和修改方向继续迭代"
+        "text": "平台、目标受众、内容目的和语气风格"
       },
       {
         "key": "C",
-        "text": "删除所有背景信息"
+        "text": "文件夹位置和屏幕尺寸"
       },
       {
         "key": "D",
-        "text": "只回复“重写”两个字"
+        "text": "用户当天心情和天气"
       }
     ],
     "answer": "B",
-    "explanation": "AI 输出可以通过追问和补充要求持续优化，具体反馈越清楚，修改越稳定。",
-    "workExample": "你可以说“语气再口语化一点，标题控制在 16 字内，增加 3 个版本”。",
-    "tags": [
-      "迭代",
-      "修改要求"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "社媒文案需要结合平台生态、受众和转化目标。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_prompt_005",
@@ -312,33 +749,495 @@ const questions = [
     "categoryName": "提示词技巧",
     "difficulty": "easy",
     "type": "single",
-    "question": "给 AI 示例的好处是什么？",
+    "question": "AI回答太泛时，最有效的优化方式是什么？",
     "options": [
       {
         "key": "A",
-        "text": "让 AI 模仿你需要的格式和风格"
+        "text": "补充具体场景、对象、约束和示例"
       },
       {
         "key": "B",
-        "text": "让 AI 不需要回答问题"
+        "text": "只回复\"再好一点\""
       },
       {
         "key": "C",
-        "text": "让 AI 自动知道所有事实"
+        "text": "删掉原有背景"
       },
       {
         "key": "D",
-        "text": "让 AI 只能输出英文"
+        "text": "让AI完全自由发挥"
       }
     ],
     "answer": "A",
-    "explanation": "示例可以让 AI 更直观地理解你想要的结构、语气、长度和表达方式。",
-    "workExample": "做标题改写时，给 2 到 3 个喜欢的标题示例，AI 更容易贴近你的风格。",
-    "tags": [
-      "示例",
-      "风格模仿"
+    "explanation": "具体信息越多，AI越容易收敛到可用答案。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_006",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "给AI参考案例的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让AI停止生成新内容"
+      },
+      {
+        "key": "B",
+        "text": "让AI忽略用户需求"
+      },
+      {
+        "key": "C",
+        "text": "帮助AI模仿结构、节奏或表达方向"
+      },
+      {
+        "key": "D",
+        "text": "让AI自动联网查证"
+      }
     ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "参考案例适合用于仿写、格式统一和风格迁移。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_007",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "提示词中的负面要求主要用于什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提升电脑运行速度"
+      },
+      {
+        "key": "B",
+        "text": "替代所有正向要求"
+      },
+      {
+        "key": "C",
+        "text": "改变软件安装路径"
+      },
+      {
+        "key": "D",
+        "text": "减少不希望出现的内容或风格"
+      }
+    ],
+    "answer": "D",
+    "explanation": "负面要求可以控制禁用词、避免方向和不想要的画面元素。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_008",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "\"控制在150字符内\"更像哪种约束？",
+    "options": [
+      {
+        "key": "A",
+        "text": "角色限制"
+      },
+      {
+        "key": "B",
+        "text": "长度限制"
+      },
+      {
+        "key": "C",
+        "text": "数据来源限制"
+      },
+      {
+        "key": "D",
+        "text": "受众限制"
+      }
+    ],
+    "answer": "B",
+    "explanation": "字数、字符数、时长都属于输出边界。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_009",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "多轮追问的价值更接近哪项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让AI忘记上文"
+      },
+      {
+        "key": "B",
+        "text": "减少有效信息"
+      },
+      {
+        "key": "C",
+        "text": "避免用户判断"
+      },
+      {
+        "key": "D",
+        "text": "逐步修正方向，让结果更贴近最终需求"
+      }
+    ],
+    "answer": "D",
+    "explanation": "多轮迭代适合从初稿逐渐调整到可用版本。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_010",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "想让AI写得像真人客服，提示词应强调什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自然、简短、具体回应用户问题"
+      },
+      {
+        "key": "B",
+        "text": "大量使用专业术语"
+      },
+      {
+        "key": "C",
+        "text": "尽量输出长篇说明"
+      },
+      {
+        "key": "D",
+        "text": "固定使用同一句话"
+      }
+    ],
+    "answer": "A",
+    "explanation": "客服回复更看重自然感、针对性和可复制性。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_011",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "提示词里加入\"受众是谁\"主要影响什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "工具是否可以打开"
+      },
+      {
+        "key": "B",
+        "text": "电脑是否联网"
+      },
+      {
+        "key": "C",
+        "text": "内容深度、表达方式和信息取舍"
+      },
+      {
+        "key": "D",
+        "text": "文件是否自动保存"
+      }
+    ],
+    "answer": "C",
+    "explanation": "不同受众需要不同解释深度和表达方式。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_012",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "要求AI\"先列思路，再给结果\"适合哪种任务？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只需要一个固定词语的任务"
+      },
+      {
+        "key": "B",
+        "text": "需要拆解、比较或判断的复杂任务"
+      },
+      {
+        "key": "C",
+        "text": "完全不需要背景的任务"
+      },
+      {
+        "key": "D",
+        "text": "只需要复制原文的任务"
+      }
+    ],
+    "answer": "B",
+    "explanation": "复杂任务适合先拆解，再输出结论或方案。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_013",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "当AI误解需求时，较好的处理方式是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "指出偏差并补充更明确的限制"
+      },
+      {
+        "key": "B",
+        "text": "只说\"不对\"不解释"
+      },
+      {
+        "key": "C",
+        "text": "马上换一个无关话题"
+      },
+      {
+        "key": "D",
+        "text": "减少所有背景信息"
+      }
+    ],
+    "answer": "A",
+    "explanation": "纠偏时要说明错在哪里，以及希望改成什么方向。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_014",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "提示词中的\"输出示例\"主要解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让AI不再需要回答"
+      },
+      {
+        "key": "B",
+        "text": "保证内容完全没有错误"
+      },
+      {
+        "key": "C",
+        "text": "让工具自动付费"
+      },
+      {
+        "key": "D",
+        "text": "让AI更容易理解最终交付形态"
+      }
+    ],
+    "answer": "D",
+    "explanation": "输出示例能降低格式和风格偏差。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_015",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "想让AI生成可直接复制的内容，应明确什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "屏幕亮度"
+      },
+      {
+        "key": "B",
+        "text": "语气、长度、使用场景和禁用表达"
+      },
+      {
+        "key": "C",
+        "text": "用户所在地天气"
+      },
+      {
+        "key": "D",
+        "text": "浏览器缓存"
+      }
+    ],
+    "answer": "B",
+    "explanation": "可直接复制意味着输出要少解释、强适配、格式清楚。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_016",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "提示词中提供产品卖点，主要为了什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "增加无关描述"
+      },
+      {
+        "key": "B",
+        "text": "替代事实审核"
+      },
+      {
+        "key": "C",
+        "text": "让AI围绕真实信息生成内容"
+      },
+      {
+        "key": "D",
+        "text": "让模型自动购买广告"
+      }
+    ],
+    "answer": "C",
+    "explanation": "产品文案必须基于卖点，否则容易空泛或偏离产品。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_017",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "做批量生成时，提示词最好加入什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "去重要求、数量要求和格式规则"
+      },
+      {
+        "key": "B",
+        "text": "更多随机词"
+      },
+      {
+        "key": "C",
+        "text": "无关历史记录"
+      },
+      {
+        "key": "D",
+        "text": "不明确的语气词"
+      }
+    ],
+    "answer": "A",
+    "explanation": "批量任务要控制数量、格式和重复率。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_018",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "要求AI\"不要夸张承诺\"主要属于什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "文件格式转换"
+      },
+      {
+        "key": "B",
+        "text": "账号权限设置"
+      },
+      {
+        "key": "C",
+        "text": "系统性能设置"
+      },
+      {
+        "key": "D",
+        "text": "合规和表达边界控制"
+      }
+    ],
+    "answer": "D",
+    "explanation": "商业内容需要避免过度承诺，特别是广告和医疗相关表达。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_019",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "想让AI解释得适合新手，应该怎么要求？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用最专业的论文表达"
+      },
+      {
+        "key": "B",
+        "text": "尽量省略背景"
+      },
+      {
+        "key": "C",
+        "text": "用通俗语言、举例说明、少用复杂术语"
+      },
+      {
+        "key": "D",
+        "text": "只给结论不解释"
+      }
+    ],
+    "answer": "C",
+    "explanation": "扫盲内容要降低理解门槛，适合用类比和例子。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_prompt_020",
+    "categoryId": "prompt",
+    "categoryName": "提示词技巧",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "提示词优化的核心目标是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让输入字数越长越好"
+      },
+      {
+        "key": "B",
+        "text": "让AI更准确地理解并完成用户意图"
+      },
+      {
+        "key": "C",
+        "text": "让AI完全替代事实判断"
+      },
+      {
+        "key": "D",
+        "text": "让输出看起来更复杂"
+      }
+    ],
+    "answer": "B",
+    "explanation": "提示词的本质是提高需求表达质量，减少理解偏差。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_office_001",
@@ -346,33 +1245,30 @@ const questions = [
     "categoryName": "AI 办公效率",
     "difficulty": "easy",
     "type": "single",
-    "question": "用 AI 写工作邮件时，最好先提供什么？",
+    "question": "AI整理会议纪要时，最适合提取哪类信息？",
     "options": [
       {
         "key": "A",
-        "text": "收件人、目的、关键信息和语气要求"
+        "text": "会议室布置风格"
       },
       {
         "key": "B",
-        "text": "只写“帮我写邮件”"
+        "text": "参会人穿着颜色"
       },
       {
         "key": "C",
-        "text": "只提供一个表情"
+        "text": "议题、结论、分工和待办事项"
       },
       {
         "key": "D",
-        "text": "完全不说明背景"
+        "text": "电脑品牌和网络状态"
       }
     ],
-    "answer": "A",
-    "explanation": "邮件需要明确对象、目的、事实信息和语气，否则很容易写得空泛。",
-    "workExample": "给 AI 说明“发给客户、通知延期、语气诚恳、附补偿方案”，邮件会更贴近真实场景。",
-    "tags": [
-      "邮件",
-      "办公"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "会议纪要重点是结构化记录核心信息和后续动作。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_office_002",
@@ -380,33 +1276,30 @@ const questions = [
     "categoryName": "AI 办公效率",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 总结会议纪要时，哪种输出结构更实用？",
+    "question": "用AI写工作邮件前，最好先提供什么？",
     "options": [
       {
         "key": "A",
-        "text": "参会人、核心结论、待办事项、负责人、截止时间"
+        "text": "收件人、目的、关键信息和期望语气"
       },
       {
         "key": "B",
-        "text": "只输出一段长文"
+        "text": "邮箱界面颜色"
       },
       {
         "key": "C",
-        "text": "只输出会议标题"
+        "text": "附件文件大小"
       },
       {
         "key": "D",
-        "text": "只输出随机观点"
+        "text": "当天天气情况"
       }
     ],
     "answer": "A",
-    "explanation": "会议纪要的关键是让后续行动清楚，待办、负责人和时间尤其重要。",
-    "workExample": "会议结束后把语音转写稿给 AI，让它整理成待办清单，可以显著节省时间。",
-    "tags": [
-      "会议纪要",
-      "待办"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "邮件任务需要明确对象、目的和表达边界。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_office_003",
@@ -414,33 +1307,30 @@ const questions = [
     "categoryName": "AI 办公效率",
     "difficulty": "easy",
     "type": "single",
-    "question": "用 AI 写周报时，最有帮助的输入是什么？",
+    "question": "AI拆解任务时，比较适合输出什么？",
     "options": [
       {
         "key": "A",
-        "text": "本周完成事项、数据、问题和下周计划"
+        "text": "随机观点集合"
       },
       {
         "key": "B",
-        "text": "只说“写得高级点”"
+        "text": "步骤、优先级、风险点和交付物"
       },
       {
         "key": "C",
-        "text": "只输入公司名"
+        "text": "无关案例列表"
       },
       {
         "key": "D",
-        "text": "不提供任何工作内容"
+        "text": "只输出一句口号"
       }
     ],
-    "answer": "A",
-    "explanation": "周报需要基于真实工作信息，AI 更适合帮你组织结构和优化表达。",
-    "workExample": "先列出本周 5 个事项，再让 AI 按“进展、结果、风险、计划”整理。",
-    "tags": [
-      "周报",
-      "表达优化"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "B",
+    "explanation": "任务拆解应能帮助执行，通常要有步骤和优先级。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_office_004",
@@ -448,33 +1338,30 @@ const questions = [
     "categoryName": "AI 办公效率",
     "difficulty": "easy",
     "type": "single",
-    "question": "AI 做资料分析前，用户最好先说明什么？",
+    "question": "AI分析表格时，比较适合做什么？",
     "options": [
       {
         "key": "A",
-        "text": "分析目标和希望得到的结论类型"
+        "text": "保证业绩自动提升"
       },
       {
         "key": "B",
-        "text": "让 AI 随机发挥"
+        "text": "替代所有财务审核"
       },
       {
         "key": "C",
-        "text": "只要求字数越多越好"
+        "text": "删除不符合预期的数据"
       },
       {
         "key": "D",
-        "text": "只要求语气活泼"
+        "text": "汇总数据、识别趋势和发现异常"
       }
     ],
-    "answer": "A",
-    "explanation": "分析目标决定 AI 应该看哪些信息、提炼什么重点，以及如何组织结论。",
-    "workExample": "分析用户评论时，可以要求 AI 提炼高频问题、购买顾虑和可优化卖点。",
-    "tags": [
-      "资料分析",
-      "目标"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "AI可辅助分析，但结论仍需要结合业务核查。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_office_005",
@@ -482,33 +1369,495 @@ const questions = [
     "categoryName": "AI 办公效率",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 生成 PPT 大纲时，最好包含什么？",
+    "question": "用AI生成周报，用户最该提供什么？",
     "options": [
       {
         "key": "A",
-        "text": "汇报对象、主题、页数、重点和风格"
+        "text": "时间范围、工作事项、结果和下一步计划"
       },
       {
         "key": "B",
-        "text": "只说“做个 PPT”"
+        "text": "用户头像"
       },
       {
         "key": "C",
-        "text": "只给一个颜色"
+        "text": "电脑桌面壁纸"
       },
       {
         "key": "D",
-        "text": "只让 AI 输出图片"
+        "text": "软件图标数量"
       }
     ],
     "answer": "A",
-    "explanation": "PPT 大纲需要围绕受众和汇报目的组织信息，页数和重点能帮助控制结构。",
-    "workExample": "做项目复盘 PPT 时，可以要求按“目标、过程、数据、问题、改进”生成 8 页大纲。",
-    "tags": [
-      "PPT",
-      "大纲"
+    "explanation": "周报需要基于真实工作内容，不能只让AI凭空编写。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_006",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI在客服工作中较常见的用途是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自动承诺客户所有要求"
+      },
+      {
+        "key": "B",
+        "text": "修改订单事实"
+      },
+      {
+        "key": "C",
+        "text": "整理常见问题并生成回复建议"
+      },
+      {
+        "key": "D",
+        "text": "删除负面评论记录"
+      }
     ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "AI适合做辅助回复和知识整理，最终仍要人工把关。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_007",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI辅助PPT大纲时，最关键的信息是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "演示设备品牌"
+      },
+      {
+        "key": "B",
+        "text": "汇报主题、听众对象和核心观点"
+      },
+      {
+        "key": "C",
+        "text": "鼠标速度"
+      },
+      {
+        "key": "D",
+        "text": "桌面文件数量"
+      }
+    ],
+    "answer": "B",
+    "explanation": "PPT大纲要围绕听众和汇报目标组织内容。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_008",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "处理公司资料时，使用AI最需要注意什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输出内容越长越好"
+      },
+      {
+        "key": "B",
+        "text": "所有文件都可直接上传"
+      },
+      {
+        "key": "C",
+        "text": "不需要区分资料敏感程度"
+      },
+      {
+        "key": "D",
+        "text": "避免泄露内部机密和个人隐私"
+      }
+    ],
+    "answer": "D",
+    "explanation": "企业资料应先判断敏感等级，再决定是否输入AI工具。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_009",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI提高办公效率的主要价值是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "辅助整理、写作、分析和方案准备"
+      },
+      {
+        "key": "B",
+        "text": "让所有岗位完全消失"
+      },
+      {
+        "key": "C",
+        "text": "保证所有方案正确"
+      },
+      {
+        "key": "D",
+        "text": "消除所有沟通成本"
+      }
+    ],
+    "answer": "A",
+    "explanation": "AI更适合做效率工具，关键结论仍要由人判断。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_010",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "建立AI办公工作流时，较合理的起点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "每个任务都完全交给AI"
+      },
+      {
+        "key": "B",
+        "text": "只做一次性娱乐内容"
+      },
+      {
+        "key": "C",
+        "text": "从高频、重复、规则清晰的任务开始"
+      },
+      {
+        "key": "D",
+        "text": "不设置检查环节"
+      }
+    ],
+    "answer": "C",
+    "explanation": "高频重复任务更容易用AI形成稳定流程。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_011",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI可以怎样帮助资料阅读？",
+    "options": [
+      {
+        "key": "A",
+        "text": "替代资料来源本身"
+      },
+      {
+        "key": "B",
+        "text": "保证资料永远最新"
+      },
+      {
+        "key": "C",
+        "text": "自动判断全部观点正确"
+      },
+      {
+        "key": "D",
+        "text": "提炼重点、生成摘要和整理问题清单"
+      }
+    ],
+    "answer": "D",
+    "explanation": "AI适合做信息提炼，但不能替代原始资料核验。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_012",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI做日报或周报时，最容易出现的问题是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只能输出图片"
+      },
+      {
+        "key": "B",
+        "text": "把缺失信息补成看似合理的内容"
+      },
+      {
+        "key": "C",
+        "text": "无法使用中文"
+      },
+      {
+        "key": "D",
+        "text": "不能按段落表达"
+      }
+    ],
+    "answer": "B",
+    "explanation": "如果原始信息不足，AI可能生成虚构或泛化内容。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_013",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI辅助写方案时，比较适合承担什么角色？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提供结构、角度、初稿和优化建议"
+      },
+      {
+        "key": "B",
+        "text": "直接替负责人做最终决策"
+      },
+      {
+        "key": "C",
+        "text": "跳过业务背景"
+      },
+      {
+        "key": "D",
+        "text": "自动保证方案成功"
+      }
+    ],
+    "answer": "A",
+    "explanation": "AI可以加快方案初稿，但最终策略仍需结合业务判断。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_014",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "使用AI做数据分析，为什么要保留原始数据？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让表格变得更复杂"
+      },
+      {
+        "key": "B",
+        "text": "让文件更大"
+      },
+      {
+        "key": "C",
+        "text": "让AI输出更慢"
+      },
+      {
+        "key": "D",
+        "text": "方便回溯、核查和修正分析结论"
+      }
+    ],
+    "answer": "D",
+    "explanation": "原始数据是后续核查和复盘的依据。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_015",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI处理跨语言沟通时，常见帮助是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自动完成跨境物流"
+      },
+      {
+        "key": "B",
+        "text": "自动确认合同条款"
+      },
+      {
+        "key": "C",
+        "text": "翻译、润色和调整语气"
+      },
+      {
+        "key": "D",
+        "text": "替客户做付款决策"
+      }
+    ],
+    "answer": "C",
+    "explanation": "AI可用于跨语言表达辅助，但商务内容要复核。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_016",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI生成SOP文档时，重点应关注什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "文字越长越好"
+      },
+      {
+        "key": "B",
+        "text": "流程步骤、标准、异常处理和责任人"
+      },
+      {
+        "key": "C",
+        "text": "只写概念不写动作"
+      },
+      {
+        "key": "D",
+        "text": "忽略使用场景"
+      }
+    ],
+    "answer": "B",
+    "explanation": "SOP要能指导执行，因此步骤和标准必须清楚。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_017",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "用AI整理待办事项，比较适合输出什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "随机灵感"
+      },
+      {
+        "key": "B",
+        "text": "无关图片"
+      },
+      {
+        "key": "C",
+        "text": "个人隐私资料"
+      },
+      {
+        "key": "D",
+        "text": "任务列表、截止时间、优先级和依赖关系"
+      }
+    ],
+    "answer": "D",
+    "explanation": "待办整理需要让后续执行更清晰。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_018",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI在招聘简历筛选中应注意什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "避免偏见，并结合岗位标准人工复核"
+      },
+      {
+        "key": "B",
+        "text": "完全由AI决定录用"
+      },
+      {
+        "key": "C",
+        "text": "只看简历长度"
+      },
+      {
+        "key": "D",
+        "text": "不需要保留判断依据"
+      }
+    ],
+    "answer": "A",
+    "explanation": "涉及人事决策时要注意公平性和可解释性。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_019",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "使用AI写汇报材料时，最好先明确什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "电脑屏幕尺寸"
+      },
+      {
+        "key": "B",
+        "text": "材料打印纸张颜色"
+      },
+      {
+        "key": "C",
+        "text": "汇报对象、汇报目的和核心结论"
+      },
+      {
+        "key": "D",
+        "text": "工具是否有动画效果"
+      }
+    ],
+    "answer": "C",
+    "explanation": "汇报材料不是堆内容，重点是服务决策和沟通。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_office_020",
+    "categoryId": "office",
+    "categoryName": "AI 办公效率",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI办公应用的合理定位是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "完全替代所有判断"
+      },
+      {
+        "key": "B",
+        "text": "辅助工具，帮助人更快完成部分工作"
+      },
+      {
+        "key": "C",
+        "text": "只适合娱乐"
+      },
+      {
+        "key": "D",
+        "text": "不需要任何检查"
+      }
+    ],
+    "answer": "B",
+    "explanation": "AI适合提升效率，人的判断、审核和责任仍然重要。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_marketing_001",
@@ -516,33 +1865,30 @@ const questions = [
     "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 写社媒文案时，哪项信息最关键？",
+    "question": "AI在内容营销中最常见的作用是什么？",
     "options": [
       {
         "key": "A",
-        "text": "产品卖点、目标用户、平台和文案风格"
+        "text": "自动保证内容爆火"
       },
       {
         "key": "B",
-        "text": "只告诉 AI 今天星期几"
+        "text": "替用户完成购买支付"
       },
       {
         "key": "C",
-        "text": "只要求越长越好"
+        "text": "删除竞品所有内容"
       },
       {
         "key": "D",
-        "text": "不说明发布场景"
+        "text": "辅助选题、脚本、标题和文案生成"
       }
     ],
-    "answer": "A",
-    "explanation": "社媒文案要贴合平台、用户和目标动作，缺少这些信息会变得泛泛而谈。",
-    "workExample": "小红书、视频号和公众号的文案节奏不同，提示词里要说明渠道。",
-    "tags": [
-      "社媒",
-      "文案"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "AI适合提升内容生产效率，但不能保证传播结果。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_marketing_002",
@@ -550,33 +1896,30 @@ const questions = [
     "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "用 AI 提炼用户痛点时，最好输入什么材料？",
+    "question": "做用户画像时，AI可以帮助什么？",
     "options": [
       {
         "key": "A",
-        "text": "用户评论、客服记录或调研反馈"
+        "text": "自动获取所有隐私数据"
       },
       {
         "key": "B",
-        "text": "随机广告语"
+        "text": "整理用户特征、需求、痛点和行为线索"
       },
       {
         "key": "C",
-        "text": "空白内容"
+        "text": "保证用户一定购买"
       },
       {
         "key": "D",
-        "text": "只输入产品价格"
+        "text": "替代真实用户反馈"
       }
     ],
-    "answer": "A",
-    "explanation": "痛点来自真实用户表达，AI 可以帮你从评论和反馈中归纳高频问题。",
-    "workExample": "把电商差评和咨询记录给 AI，它可以整理出用户最担心的购买障碍。",
-    "tags": [
-      "用户痛点",
-      "评论分析"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "B",
+    "explanation": "AI能辅助分析用户，但画像仍要基于真实数据。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_marketing_003",
@@ -584,33 +1927,30 @@ const questions = [
     "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "AI 生成广告标题时，为什么要让它给多个版本？",
+    "question": "AI生成广告文案前，最应该提供什么？",
     "options": [
       {
         "key": "A",
-        "text": "方便比较不同角度并筛选"
+        "text": "产品卖点、目标用户、平台和转化目标"
       },
       {
         "key": "B",
-        "text": "为了让内容更混乱"
+        "text": "软件安装路径"
       },
       {
         "key": "C",
-        "text": "为了避免人工判断"
+        "text": "随机热门词"
       },
       {
         "key": "D",
-        "text": "为了保证每个标题都能爆火"
+        "text": "内部无关聊天记录"
       }
     ],
     "answer": "A",
-    "explanation": "多个版本可以覆盖利益点、痛点、场景、数字化表达等不同方向，便于筛选。",
-    "workExample": "可以要求 AI 输出 10 个标题，并按“痛点型、利益型、场景型”分组。",
-    "tags": [
-      "广告标题",
-      "多版本"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "广告文案要围绕产品、用户和目标展开。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_marketing_004",
@@ -618,33 +1958,30 @@ const questions = [
     "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "用 AI 做竞品分析时，不应该怎么做？",
+    "question": "用AI做A/B测试文案时，重点比较什么？",
     "options": [
       {
         "key": "A",
-        "text": "把 AI 输出当成唯一事实来源"
+        "text": "哪个版本字数最多"
       },
       {
         "key": "B",
-        "text": "提供竞品资料和对比维度"
+        "text": "哪个版本术语最多"
       },
       {
         "key": "C",
-        "text": "要求输出表格"
+        "text": "不同版本对点击、咨询或转化目标的影响"
       },
       {
         "key": "D",
-        "text": "让 AI 标出待核查信息"
+        "text": "哪个版本排版最复杂"
       }
     ],
-    "answer": "A",
-    "explanation": "竞品分析涉及事实和数据，AI 可以辅助整理，但来源必须核查。",
-    "workExample": "你可以让 AI 先产出对比框架，再人工补充官网、店铺和公开资料。",
-    "tags": [
-      "竞品分析",
-      "事实核查"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "A/B测试要围绕明确指标评估，不只看主观感觉。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
     "id": "q_marketing_005",
@@ -652,716 +1989,494 @@ const questions = [
     "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "短视频脚本提示词中，哪项最有利于控制结果？",
+    "question": "AI做SEO内容时，常见辅助方向是什么？",
     "options": [
       {
         "key": "A",
-        "text": "视频时长、目标用户、产品卖点、镜头结构"
+        "text": "自动让网站排名第一"
       },
       {
         "key": "B",
-        "text": "只说“拍一个爆款”"
+        "text": "删除页面关键词"
       },
       {
         "key": "C",
-        "text": "只输入产品名"
+        "text": "只生成无关段落"
       },
       {
         "key": "D",
-        "text": "只要求押韵"
-      }
-    ],
-    "answer": "A",
-    "explanation": "短视频脚本需要控制节奏、镜头、卖点和目标用户，信息越明确越容易落地。",
-    "workExample": "可以要求 AI 按“开头钩子、痛点、解决方案、行动引导”输出。",
-    "tags": [
-      "短视频",
-      "脚本"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_image_001",
-    "categoryId": "image",
-    "categoryName": "AI 图片生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "图片提示词中通常最应该描述什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "主体、场景、风格、光线和构图"
-      },
-      {
-        "key": "B",
-        "text": "只写“好看一点”"
-      },
-      {
-        "key": "C",
-        "text": "只输入一个标点"
-      },
-      {
-        "key": "D",
-        "text": "完全不说明画面内容"
-      }
-    ],
-    "answer": "A",
-    "explanation": "图片生成需要清楚描述画面元素，主体、场景、风格和光线会直接影响结果。",
-    "workExample": "生成海报图时，可以说明产品主体、背景场景、配色、镜头角度和画面比例。",
-    "tags": [
-      "图片提示词",
-      "构图"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_image_002",
-    "categoryId": "image",
-    "categoryName": "AI 图片生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "负面提示词的主要作用是什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "说明不希望画面出现什么"
-      },
-      {
-        "key": "B",
-        "text": "让图片变成纯文字"
-      },
-      {
-        "key": "C",
-        "text": "自动提高网速"
-      },
-      {
-        "key": "D",
-        "text": "删除所有主体"
-      }
-    ],
-    "answer": "A",
-    "explanation": "负面提示词用于减少不想要的元素、风格或常见问题。",
-    "workExample": "例如生成产品图时，可以加入“不要变形、不要多余文字、不要低清晰度”。",
-    "tags": [
-      "负面提示词",
-      "图片生成"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_image_003",
-    "categoryId": "image",
-    "categoryName": "AI 图片生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "想让 AI 图片更适合电商主图，提示词应强调什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "产品清晰、背景干净、卖点突出"
-      },
-      {
-        "key": "B",
-        "text": "画面越复杂越好"
-      },
-      {
-        "key": "C",
-        "text": "主体越小越好"
-      },
-      {
-        "key": "D",
-        "text": "文字越多越好"
-      }
-    ],
-    "answer": "A",
-    "explanation": "电商图重点是让用户看清产品和卖点，画面不能喧宾夺主。",
-    "workExample": "可以要求“白色简洁背景、产品居中、细节清晰、商业摄影质感”。",
-    "tags": [
-      "电商图",
-      "产品"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_image_004",
-    "categoryId": "image",
-    "categoryName": "AI 图片生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "参考图在图片生成中的常见作用是什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "帮助模型理解主体、风格或构图方向"
-      },
-      {
-        "key": "B",
-        "text": "保证生成结果完全一样"
-      },
-      {
-        "key": "C",
-        "text": "让提示词不再需要文字"
-      },
-      {
-        "key": "D",
-        "text": "自动解决所有版权问题"
-      }
-    ],
-    "answer": "A",
-    "explanation": "参考图可以提供视觉方向，但生成结果仍会受模型能力和提示词影响。",
-    "workExample": "做品牌视觉延展时，参考图可以帮助保持配色、风格和画面气质。",
-    "tags": [
-      "参考图",
-      "视觉风格"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_image_005",
-    "categoryId": "image",
-    "categoryName": "AI 图片生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "控制画面比例有什么用？",
-    "options": [
-      {
-        "key": "A",
-        "text": "让图片适配海报、封面、详情页等不同场景"
-      },
-      {
-        "key": "B",
-        "text": "让图片一定没有瑕疵"
-      },
-      {
-        "key": "C",
-        "text": "让 AI 自动写文案"
-      },
-      {
-        "key": "D",
-        "text": "让图片只能黑白显示"
-      }
-    ],
-    "answer": "A",
-    "explanation": "不同平台和用途需要不同画面比例，提前指定可以减少后期裁切。",
-    "workExample": "公众号封面、短视频封面和电商详情页通常需要不同尺寸比例。",
-    "tags": [
-      "画面比例",
-      "适配"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_video_001",
-    "categoryId": "video",
-    "categoryName": "AI 视频生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "视频提示词比图片提示词通常更需要补充什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "动作、镜头运动和时间变化"
-      },
-      {
-        "key": "B",
-        "text": "只补充一个颜色"
-      },
-      {
-        "key": "C",
-        "text": "只补充文件名"
-      },
-      {
-        "key": "D",
-        "text": "完全不用描述场景"
-      }
-    ],
-    "answer": "A",
-    "explanation": "视频有时间维度，需要描述人物动作、镜头移动、节奏和场景变化。",
-    "workExample": "例如“镜头缓慢推进，人物拿起产品微笑展示，背景光线柔和”。",
-    "tags": [
-      "视频提示词",
-      "镜头"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_video_002",
-    "categoryId": "video",
-    "categoryName": "AI 视频生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "分镜写法的主要价值是什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "把视频拆成多个清楚的镜头段落"
-      },
-      {
-        "key": "B",
-        "text": "让视频不需要主题"
-      },
-      {
-        "key": "C",
-        "text": "让所有画面随机变化"
-      },
-      {
-        "key": "D",
-        "text": "让视频只保留声音"
-      }
-    ],
-    "answer": "A",
-    "explanation": "分镜能让每个镜头的画面、动作、时长和目的更明确，方便生成和修改。",
-    "workExample": "广告视频可以拆成“痛点、产品出现、功能演示、行动引导”四个分镜。",
-    "tags": [
-      "分镜",
-      "短视频"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_video_003",
-    "categoryId": "video",
-    "categoryName": "AI 视频生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "视频生成中“场景一致性”指什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "不同镜头中的人物、环境和物体保持连贯"
-      },
-      {
-        "key": "B",
-        "text": "每一帧都换一个主题"
-      },
-      {
-        "key": "C",
-        "text": "只生成静态图片"
-      },
-      {
-        "key": "D",
-        "text": "画面必须没有颜色"
-      }
-    ],
-    "answer": "A",
-    "explanation": "场景一致性是指视频前后画面不突兀，人物、产品、环境和风格尽量保持统一。",
-    "workExample": "做产品展示视频时，要避免上一秒是黑色水杯，下一秒突然变成白色水杯。",
-    "tags": [
-      "场景一致性",
-      "连贯性"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_video_004",
-    "categoryId": "video",
-    "categoryName": "AI 视频生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "描述人物表情和动作的好处是什么？",
-    "options": [
-      {
-        "key": "A",
-        "text": "让画面表现更符合剧情或广告目的"
-      },
-      {
-        "key": "B",
-        "text": "让视频自动变长"
-      },
-      {
-        "key": "C",
-        "text": "让声音更大"
-      },
-      {
-        "key": "D",
-        "text": "让模型不需要主体"
-      }
-    ],
-    "answer": "A",
-    "explanation": "表情和动作会影响视频情绪和叙事，让画面更有方向。",
-    "workExample": "例如“人物惊喜地看向产品，然后点头微笑”，比“一个人在房间里”更明确。",
-    "tags": [
-      "人物动作",
-      "表情"
-    ],
-    "createdAt": "2026-05-14"
-  },
-  {
-    "id": "q_video_005",
-    "categoryId": "video",
-    "categoryName": "AI 视频生成",
-    "difficulty": "easy",
-    "type": "single",
-    "question": "AI 视频常见翻车问题不包括哪一项？",
-    "options": [
-      {
-        "key": "A",
-        "text": "人物手部变形"
-      },
-      {
-        "key": "B",
-        "text": "产品结构变化"
-      },
-      {
-        "key": "C",
-        "text": "场景前后不一致"
-      },
-      {
-        "key": "D",
-        "text": "提示词写得太清楚"
+        "text": "生成关键词、标题、描述和内容结构"
       }
     ],
     "answer": "D",
-    "explanation": "提示词写清楚通常会改善结果，常见问题反而是动作、结构和一致性控制不好。",
-    "workExample": "生成前先写清楚主体细节、镜头运动和禁止变化的内容，可以减少翻车。",
-    "tags": [
-      "翻车问题",
-      "质量控制"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "SEO需要持续优化，AI可辅助内容结构和关键词扩展。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_coding_001",
-    "categoryId": "coding",
-    "categoryName": "AI 编程辅助",
+    "id": "q_marketing_006",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 修改代码前，最好提供什么？",
+    "question": "社媒运营中，AI处理评论较适合做什么？",
     "options": [
       {
         "key": "A",
-        "text": "目标、相关文件、报错信息和验收标准"
+        "text": "分类评论、识别意向并生成回复建议"
       },
       {
         "key": "B",
-        "text": "只说“改好”"
+        "text": "自动屏蔽所有用户"
       },
       {
         "key": "C",
-        "text": "只提供项目名"
+        "text": "修改用户原始评论"
       },
       {
         "key": "D",
-        "text": "不说明问题"
+        "text": "替客户完成订单支付"
       }
     ],
     "answer": "A",
-    "explanation": "代码任务需要明确问题、范围和判断完成的标准，AI 才不容易改偏。",
-    "workExample": "让 AI 修 bug 时，贴出复现步骤、错误日志和期望行为，会更高效。",
-    "tags": [
-      "编程辅助",
-      "任务说明"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "评论分类和回复建议适合做成AI辅助工作流。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_coding_002",
-    "categoryId": "coding",
-    "categoryName": "AI 编程辅助",
+    "id": "q_marketing_007",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "为什么复杂开发任务要拆分模块？",
+    "question": "AI生成短视频脚本时，前三秒通常应强化什么？",
     "options": [
       {
         "key": "A",
-        "text": "降低风险，便于逐步验证"
+        "text": "结尾版权声明"
       },
       {
         "key": "B",
-        "text": "让文件数量越多越好"
+        "text": "账号后台设置"
       },
       {
         "key": "C",
-        "text": "避免写验收标准"
+        "text": "钩子、冲突、痛点或强视觉吸引"
       },
       {
         "key": "D",
-        "text": "让 AI 随机决定功能"
+        "text": "文件命名规则"
       }
     ],
-    "answer": "A",
-    "explanation": "拆分任务可以减少一次性改动范围，让每一步都更容易检查和回滚。",
-    "workExample": "先做页面骨架，再做数据，再做交互，比一次性做完整系统更稳。",
-    "tags": [
-      "任务拆分",
-      "开发流程"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "短视频开头直接影响停留率，需要快速抓住注意力。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_coding_003",
-    "categoryId": "coding",
-    "categoryName": "AI 编程辅助",
+    "id": "q_marketing_008",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "让 AI 读代码时，最有效的问题通常是？",
+    "question": "用AI分析营销数据时，比较适合让它输出什么？",
     "options": [
       {
         "key": "A",
-        "text": "请说明这个模块的数据流和关键入口"
+        "text": "账号密码"
       },
       {
         "key": "B",
-        "text": "这个项目怎么样"
+        "text": "趋势变化、异常点和优化方向"
       },
       {
         "key": "C",
-        "text": "随便看看"
+        "text": "无关行业段子"
       },
       {
         "key": "D",
-        "text": "你猜哪里有问题"
+        "text": "随机推广口号"
       }
     ],
-    "answer": "A",
-    "explanation": "具体问题能引导 AI 聚焦入口、数据流、状态和风险点，回答更有用。",
-    "workExample": "接手项目时，可以先让 AI 找出路由、状态管理和核心业务模块。",
-    "tags": [
-      "读代码",
-      "数据流"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "B",
+    "explanation": "AI可以辅助读数据，但建议和真实后台指标交叉验证。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_coding_004",
-    "categoryId": "coding",
-    "categoryName": "AI 编程辅助",
+    "id": "q_marketing_009",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "验收标准的作用是什么？",
+    "question": "AI做营销运营时，为什么不能只依赖生成结果？",
     "options": [
       {
         "key": "A",
-        "text": "说明怎样才算完成"
+        "text": "因为AI不能写中文"
       },
       {
         "key": "B",
-        "text": "让任务更模糊"
+        "text": "因为AI只能画图"
       },
       {
         "key": "C",
-        "text": "替代所有测试"
+        "text": "因为AI无法处理营销内容"
       },
       {
         "key": "D",
-        "text": "只用于写标题"
+        "text": "还需要结合真实数据、品牌定位和平台规则判断"
       }
     ],
-    "answer": "A",
-    "explanation": "验收标准能帮助 AI 和开发者对齐结果，减少“看起来做了但不能用”的情况。",
-    "workExample": "例如“点击分类进入答题页，完成 5 题后显示正确率，刷新后错题仍保留”。",
-    "tags": [
-      "验收标准",
-      "测试"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "营销输出涉及品牌、平台和转化，必须人工复核。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_coding_005",
-    "categoryId": "coding",
-    "categoryName": "AI 编程辅助",
+    "id": "q_marketing_010",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "为了避免 AI 改坏项目，哪种做法更好？",
+    "question": "AI辅助私域运营时，较适合做什么？",
     "options": [
       {
         "key": "A",
-        "text": "限定修改范围并运行检查"
+        "text": "公开所有客户资料"
       },
       {
         "key": "B",
-        "text": "让 AI 重写全部项目"
+        "text": "随机群发无关内容"
       },
       {
         "key": "C",
-        "text": "不看改动直接发布"
+        "text": "生成用户分层话术、活动文案和跟进提醒"
       },
       {
         "key": "D",
-        "text": "删除所有测试"
+        "text": "自动替用户付款"
       }
     ],
-    "answer": "A",
-    "explanation": "限定范围、逐步修改和运行检查，可以降低引入新问题的概率。",
-    "workExample": "可以要求 AI 只修改答题页和工具函数，并在完成后检查语法和页面配置。",
-    "tags": [
-      "安全开发",
-      "检查"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "C",
+    "explanation": "私域运营要注意分层、节奏和隐私保护。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_safety_001",
-    "categoryId": "safety",
-    "categoryName": "AI 安全与常识",
+    "id": "q_marketing_011",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "下面哪类信息不应该随便输入 AI 工具？",
+    "question": "AI做竞品分析时，比较适合整理什么？",
     "options": [
       {
         "key": "A",
-        "text": "身份证号、密码、客户隐私等敏感信息"
+        "text": "卖点、价格区间、内容风格和用户反馈"
       },
       {
         "key": "B",
-        "text": "公开的产品介绍"
+        "text": "竞品内部未公开数据"
       },
       {
         "key": "C",
-        "text": "普通学习问题"
+        "text": "用户账号密码"
       },
       {
         "key": "D",
-        "text": "通用写作要求"
+        "text": "平台不可见后台信息"
       }
     ],
     "answer": "A",
-    "explanation": "敏感信息一旦输入第三方工具，可能带来隐私和安全风险。",
-    "workExample": "处理客户资料时，应先脱敏，再让 AI 做分类或总结。",
-    "tags": [
-      "隐私",
-      "安全"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "竞品分析应基于公开信息和可验证资料。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_safety_002",
-    "categoryId": "safety",
-    "categoryName": "AI 安全与常识",
+    "id": "q_marketing_012",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "API Key 为什么不能放在小程序前端？",
+    "question": "AI生成标题时，营销运营最关注什么？",
     "options": [
       {
         "key": "A",
-        "text": "容易被别人看到并盗用"
+        "text": "标题越长越好"
       },
       {
         "key": "B",
-        "text": "会让按钮变小"
+        "text": "吸引力、关键词匹配和用户点击动机"
       },
       {
         "key": "C",
-        "text": "会让页面颜色改变"
+        "text": "尽量没有信息量"
       },
       {
         "key": "D",
-        "text": "会让题目数量减少"
+        "text": "只追求复杂表达"
       }
     ],
-    "answer": "A",
-    "explanation": "前端代码可能被查看或逆向，API Key 暴露后可能产生费用和安全风险。",
-    "workExample": "正确做法是把 Key 放在云函数或后端，由前端请求后端接口。",
-    "tags": [
-      "API Key",
-      "后端"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "B",
+    "explanation": "标题需要兼顾吸引、准确和平台搜索。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_safety_003",
-    "categoryId": "safety",
-    "categoryName": "AI 安全与常识",
+    "id": "q_marketing_013",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "医疗、法律、投资类 AI 建议应该如何处理？",
+    "question": "AI做素材复盘时，可以帮助识别什么？",
     "options": [
       {
         "key": "A",
-        "text": "只当参考，并咨询专业人士"
+        "text": "所有素材一定爆火的原因"
       },
       {
         "key": "B",
-        "text": "直接照做"
+        "text": "平台完整推荐算法"
       },
       {
         "key": "C",
-        "text": "转发给所有人"
+        "text": "未公开账号权重"
       },
       {
         "key": "D",
-        "text": "不用看来源"
+        "text": "高表现内容的共性结构和表达角度"
       }
     ],
-    "answer": "A",
-    "explanation": "高风险领域的错误建议可能造成严重后果，必须谨慎核查。",
-    "workExample": "AI 可以帮你整理问题清单，但最终判断应交给医生、律师或持牌专业人士。",
-    "tags": [
-      "高风险领域",
-      "专业判断"
-    ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "复盘能找规律，但不能把单一原因绝对化。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_safety_004",
-    "categoryId": "safety",
-    "categoryName": "AI 安全与常识",
+    "id": "q_marketing_014",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "使用 AI 生成商业图片时，需要注意什么？",
+    "question": "用AI生成营销内容时，合规上要注意什么？",
     "options": [
       {
         "key": "A",
-        "text": "版权、授权、肖像和品牌合规风险"
+        "text": "避免夸大承诺、虚假对比和违规词"
       },
       {
         "key": "B",
-        "text": "只要好看就能随便商用"
+        "text": "越夸张越容易转化"
       },
       {
         "key": "C",
-        "text": "不需要检查人物和商标"
+        "text": "不用管平台规则"
       },
       {
         "key": "D",
-        "text": "必须所有图都公开发布"
+        "text": "可以随意使用他人素材"
       }
     ],
     "answer": "A",
-    "explanation": "商业使用要关注版权、素材来源、人物肖像、商标和平台规则。",
-    "workExample": "用于广告投放前，最好确认生成平台的商用规则，并人工检查图片细节。",
-    "tags": [
-      "版权",
-      "商用"
-    ],
-    "createdAt": "2026-05-14"
+    "explanation": "营销内容应符合平台规则、广告法和品牌真实信息。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   },
   {
-    "id": "q_safety_005",
-    "categoryId": "safety",
-    "categoryName": "AI 安全与常识",
+    "id": "q_marketing_015",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
     "difficulty": "easy",
     "type": "single",
-    "question": "判断 AI 回答是否可靠，下面哪种做法更好？",
+    "question": "AI可以怎样帮助社媒日历规划？",
     "options": [
       {
         "key": "A",
-        "text": "查看来源并用可靠资料交叉验证"
+        "text": "自动保证粉丝增长"
       },
       {
         "key": "B",
-        "text": "只看语气是否肯定"
+        "text": "替平台提升推荐量"
       },
       {
         "key": "C",
-        "text": "只看回答是否很长"
+        "text": "安排主题、发布时间、内容类型和复盘节点"
       },
       {
         "key": "D",
-        "text": "只看排版是否整齐"
+        "text": "隐藏所有历史数据"
+      }
+    ],
+    "answer": "C",
+    "explanation": "内容日历能让运营工作更有节奏。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_marketing_016",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI生成直播话术时，重点应该围绕什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "主播设备型号"
+      },
+      {
+        "key": "B",
+        "text": "用户痛点、产品卖点、互动问题和转化引导"
+      },
+      {
+        "key": "C",
+        "text": "直播间墙面颜色"
+      },
+      {
+        "key": "D",
+        "text": "无关热门梗"
+      }
+    ],
+    "answer": "B",
+    "explanation": "直播话术需要兼顾吸引、讲解、互动和转化。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_marketing_017",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI做邮件营销时，可以辅助什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "主题行、正文、分组话术和发送节奏建议"
+      },
+      {
+        "key": "B",
+        "text": "自动绕过用户授权"
+      },
+      {
+        "key": "C",
+        "text": "公开客户邮箱"
+      },
+      {
+        "key": "D",
+        "text": "保证所有邮件被打开"
       }
     ],
     "answer": "A",
-    "explanation": "AI 回答看起来专业不代表一定正确，可靠来源和交叉验证更重要。",
-    "workExample": "做行业报告时，可以让 AI 生成框架，但关键数据要回到官方或可信来源核查。",
-    "tags": [
-      "事实核查",
-      "可靠性"
+    "explanation": "邮件营销要重视内容质量、用户许可和数据反馈。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_marketing_018",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI在品牌内容中最需要保持什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "每次完全随机表达"
+      },
+      {
+        "key": "B",
+        "text": "只追求夸张效果"
+      },
+      {
+        "key": "C",
+        "text": "忽略目标人群"
+      },
+      {
+        "key": "D",
+        "text": "品牌调性、核心卖点和表达一致性"
+      }
     ],
-    "createdAt": "2026-05-14"
+    "answer": "D",
+    "explanation": "品牌内容要长期一致，不能每条内容都像不同品牌。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_marketing_019",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "用AI做社媒评论回复，最重要的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "所有评论都用同一句话"
+      },
+      {
+        "key": "B",
+        "text": "只按字数判断"
+      },
+      {
+        "key": "C",
+        "text": "理解评论意图，再给出自然、合适的回复"
+      },
+      {
+        "key": "D",
+        "text": "不看用户问题"
+      }
+    ],
+    "answer": "C",
+    "explanation": "评论回复需要先分类意图，再选择合适话术。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
+  },
+  {
+    "id": "q_marketing_020",
+    "categoryId": "marketing",
+    "categoryName": "AI 营销运营",
+    "difficulty": "easy",
+    "type": "single",
+    "question": "AI营销运营工具落地时，最适合先做哪类功能？",
+    "options": [
+      {
+        "key": "A",
+        "text": "完全无法验证结果的功能"
+      },
+      {
+        "key": "B",
+        "text": "重复频率高、规则清楚、结果易检查的功能"
+      },
+      {
+        "key": "C",
+        "text": "只靠概念展示的功能"
+      },
+      {
+        "key": "D",
+        "text": "需要大量隐私数据的功能"
+      }
+    ],
+    "answer": "B",
+    "explanation": "可落地的AI工具应从高频且可验证的场景开始。",
+    "workExample": "",
+    "tags": [],
+    "createdAt": "2026-05-22"
   }
-]
-
-module.exports = {
-  questions,
-}
+] }

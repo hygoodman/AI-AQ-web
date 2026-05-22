@@ -349,7 +349,7 @@ function App() {
               {isFavorited ? '已收藏' : '收藏'}
             </button>
           </div>
-          <h2>{question.title}</h2>
+          <h2>{question.question}</h2>
           <div className="options">
             {question.options.map((option) => {
               const isSelected = option.key === quizSession.selectedAnswer
@@ -550,7 +550,7 @@ function QuestionList({ items, emptyText, onRemove }) {
         <article className="list-item" key={item.question.id}>
           <div>
             <p className="eyebrow">{item.categoryName}</p>
-            <h3>{item.question.title}</h3>
+            <h3>{item.question.question}</h3>
             <p className="muted">正确答案：{item.question.answer}</p>
           </div>
           <button className="small-button" onClick={() => onRemove(item.question.id)}>
